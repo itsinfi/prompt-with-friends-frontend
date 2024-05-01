@@ -1,23 +1,16 @@
-import './App.css'
+import { BrowserRouter as Router, Route, Switch } from 'react-dom';
+import HomePage from './screens/start/Home';
+import CreateGamePage from './screens/createGame/CreateGame';
 
 function App() {
-
-
-  return (
-    <>
-      <div className='titleWithDividers'>
-        <div className='divider'></div>
-        <h1 className='title'>
-          PromptWithFriends
-        </h1>
-        <div className='divider'></div>
-      </div>
-      
-      <button className='createSession'>
-        Spiel erstellen
-      </button>
-    </>
-  )
+    return (
+        <Router>
+        <Switch>
+            <Route path="/" exact component={HomePage} />
+            <Route path="/createGame" component={CreateGamePage} />
+        </Switch>
+        </Router>
+    );
 }
 
-export default App
+export default App;

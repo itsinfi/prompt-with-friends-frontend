@@ -1,0 +1,18 @@
+.title {
+font-size: 80px;
+color: var(--secondary);
+}
+
+.divider {
+height: 1px;
+flex-grow: 1;
+margin: 0 40px;
+border-bottom: 5px solid var(--primary-opacity);
+}
+
+.titleWithDividers {
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: center;
+}

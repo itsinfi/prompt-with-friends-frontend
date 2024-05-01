@@ -1,0 +1,22 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.createSession {
+  margin-top: 160px;
+  padding: 40px;
+  will-change: filter, transform, box-shadow;
+  transition: filter 200ms, transform 400ms, box-shadow 600ms;
+  background-color: var(--primary-opacity);
+  font-size: 40px;
+}
+
+.createSession:hover {
+  filter: drop-shadow(0 0 2rem var(--primary));
+  border-color: var(--secondary-opacity);
+  transform: translateY(-10px);
+  box-shadow: 0 10px 0.2rem 0.2rem var(--box-shadow);
+}
