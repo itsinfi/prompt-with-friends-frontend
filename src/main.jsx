@@ -35,12 +35,6 @@ const router = createBrowserRouter(
       v7_normalizeFormMethod: true,
     }
   },
-  // createRoutesFromElements(
-  //   [
-  //     <Route key={'home'} path='/' element={<HomePage />} />,
-  //     <Route key={'createGame'} path='/createGame' element={ <CreateGamePage/> } />
-  //   ]
-  // )
 );
 
 
