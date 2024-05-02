@@ -1,0 +1,13 @@
+.card {
+    background-color: var(--card-color);
+    border-radius: 30px;
+    padding: 15px;
+    margin: 30px;
+    border: 5px solid var(--border-color);
+    transition: background-color 500ms, box-shadow 500ms;
+}
+
+.card:hover {
+    box-shadow: 0 0 2px 2px var(--border-color);
+    background-color: var(--card-color-on-hover);
+}

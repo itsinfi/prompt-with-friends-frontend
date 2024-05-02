@@ -14,6 +14,8 @@
 - *React - Build-In React Hooks*: [https://react.dev/reference/react/hooks]
 - *Vite - Getting Started*: [https://vitejs.dev/guide/]
 - *W3 Schools - CSS Web Fonts*: [https://www.w3schools.com/css/css3_fonts.asp]
+- *Ubuntu Font*: [https://www.1001fonts.com/ubuntu-font.html]
+- *Vincent Garreau - particles.js*: [https://vincentgarreau.com/particles.js/]
 
 
 

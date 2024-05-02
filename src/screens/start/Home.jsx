@@ -3,6 +3,8 @@ import TitleWithDividers from '../../components/titleWithDividers/TitleWithDivid
 // import Link from 'react-router-dom';
 
 
+
+
 /**
  * Home Page where user click a button to create a new game
  * 
@@ -12,12 +14,14 @@ function HomePage() {
 
   return (
     <>
-      <TitleWithDividers title='PromptWithFriends'/>
-      
-      <button className='createSession'>
-        {/* <Link to="/createGame">Spiel erstellen</Link> */}
-        Spiel erstellen
-      </button>
+      <div className='js-count-particles'>
+        <TitleWithDividers title='PromptWithFriends'/>
+        
+        <button className='createSession'>
+          {/* <Link to="/createGame">Spiel erstellen</Link> */}
+          Spiel erstellen
+        </button>
+      </div>
     </>
   )
 }
