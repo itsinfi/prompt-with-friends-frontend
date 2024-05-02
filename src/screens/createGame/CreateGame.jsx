@@ -1,5 +1,6 @@
 import './CreateGame.css'
 import Card from '../../components/card/Card'
+import { Outlet } from 'react-router-dom'
 
 /**
  * Create Game Page where user can invite other players and start the game
@@ -12,33 +13,34 @@ function CreateGamePage() {
         <>
             <Card>
                 <h1>
-                    bruder
+                    test
                 </h1>
                 <h2>
-                    bruder
+                    test
                 </h2>
                 <h3>
-                    bruder
+                    test
                 </h3>
                 <h4>
-                    bruder
+                    test
                 </h4>
                 <h5>
-                    bruder
+                    test
                 </h5>
                 <h6>
-                    bruder
+                    test
                 </h6>
                 <p>
                     Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
                 </p>
                 <a>
-                    bruder
+                    test
                 </a>
                 <button>
-                    bruder
+                    test
                 </button>
             </Card>
+            <Outlet/>
         </>
     )
 }

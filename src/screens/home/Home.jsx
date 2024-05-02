@@ -1,6 +1,6 @@
 import './Home.css'
 import TitleWithDividers from '../../components/titleWithDividers/TitleWithDividers'
-// import Link from 'react-router-dom';
+import { Outlet, Link }  from 'react-router-dom';
 
 
 
@@ -17,11 +17,13 @@ function HomePage() {
       <div className='js-count-particles'>
         <TitleWithDividers title='PromptWithFriends'/>
         
-        <button className='createSession'>
-          {/* <Link to="/createGame">Spiel erstellen</Link> */}
-          Spiel erstellen
-        </button>
+        <Link to='/createGame' relative='path'>
+          <button className='createSession'>
+            Spiel erstellen
+          </button>
+        </Link>
       </div>
+      <Outlet/>
     </>
   )
 }
