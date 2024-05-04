@@ -1,9 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
+import Config from './utils/config'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import HomePage from './screens/home/Home'
 import CreateGamePage from './screens/createGame/CreateGame'
+
+//load config
+Config.loadConfig()
+
 
 /**
  * Define routes here
@@ -36,6 +41,9 @@ const router = createBrowserRouter(
     }
   },
 );
+
+
+
 
 
 

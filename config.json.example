@@ -1,0 +1,5 @@
+{
+    "name": "promptwithfriends",
+    "fe_host": "http://localhost:5173",
+    "be_host": "http://localhost:3000"
+}

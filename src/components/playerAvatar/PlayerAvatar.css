@@ -1,0 +1,11 @@
+.playerAvatar {
+    padding-top: 20px;
+}
+
+.playerIcon {
+    filter: drop-shadow(5px 5px 5px var(--box-shadow));
+}
+
+.playerName {
+
+}

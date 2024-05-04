@@ -22,3 +22,5 @@
 - *React Router - Link* [https://reactrouter.com/en/main/components/link]
 - *React Router - Loader* [https://reactrouter.com/en/main/route/loader]
 - *React Router - Outlet* [https://reactrouter.com/en/main/components/outlet]
+- *Font Awesome Icons in React* [https://docs.fontawesome.com/v5/web/use-with/react]
+- *React - Toastify (Snackbars)* [https://fkhadra.github.io/react-toastify/introduction] 

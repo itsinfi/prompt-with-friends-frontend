@@ -63,6 +63,15 @@
   --border-color: #00000010;
   --card-color: #ffffffaa;
   --card-color-on-hover: #ffffffbb;
+  --error: #FF5462;
+  --warning: #E9B850;
+  --success: #5CE06A;
+
+
+  /*Toastify styles*/
+  --toastify-color-success: var(--success);
+  --toastify-color-warning: var(--warning);
+  --toastify-color-error: var(--success);
 }
 
 h1, h2, h3, h4, h5, h6, button, p, div {
@@ -76,6 +85,12 @@ h1, h2, h3, h4, h5, h6, button {
 
 p {
   text-align: left;
+}
+
+p.error {
+  color: var(--error);
+  text-align: center;
+  font-weight: bold;
 }
 
 a {
@@ -104,7 +119,7 @@ h1 {
   line-height: 1.1;
 }
 
-button {
+button, input {
   border-radius: 300px;
   background-color: var(--light-text);
   font-size: 20px;
@@ -113,21 +128,44 @@ button {
   will-change: box-shadow, border-color, transform, opacity, color, background-color;
   transition: box-shadow 300ms, border-color 200ms, transform 100ms, opacity 300ms, color 300ms, background-color 300ms;
 }
-button:hover {
+button:hover, input:hover {
   box-shadow: 0 2px 2px 2px var(--box-shadow);
   border-color: var(--box-shadow);
   color: var(--light-text);
   background-color: var(--dark-text);
   cursor: pointer;
 }
-button:active{
+button:active, input:focus{
   box-shadow: 0 0 10px 10px var(--primary-opacity);
   border-color: var(--primary);
   transform: translateY(-2px);
   opacity: 70%;
+  outline: none;
 }
 button:disabled {
   opacity: 50%;
+}
+
+input {
+  background-color: var(--light-text);
+  color: var(--dark-text);
+  border: 5px solid var(--border-color);
+  border-radius: 30px;
+  padding: 10px;
+}
+
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 
