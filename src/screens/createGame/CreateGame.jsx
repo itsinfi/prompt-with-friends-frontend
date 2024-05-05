@@ -18,13 +18,21 @@ function CreateGamePage(config) {
 
     console.log(config)
 
-    let session = {id: 1, code: '1bc823'}
-
+    let session = { id: 1, code: '1bc823' }
+    
+    
     //TODO: wait for backend implementation of session + create models to dynamically load and update here
-    let players = [{id: 1, name: 'Player1'}, {id: 2, name: 'Player2'}, {id: 3, name: 'Player3'}, {id: 4, name: 'Player4'}, {id: 5, name: 'Player5'}, {id: 6, name: 'Player6'}]
+    let players = [{id: 1, name: 'Player1', isAdmin: true}, {id: 2, name: 'Player2', isAdmin: false},/* {id: 3, name: 'Player3', isAdmin: false}, {id: 4, name: 'Player4', isAdmin: false}, {id: 5, name: 'Player5', isAdmin: false}, {id: 6, name: 'Player6', isAdmin: false}*/]
+    
+    //TODO: implement more dynamically
+    const userID = 1
+    const currentPlayer = players.find(player => player.id === userID)
 
     //TODO: implement function to check if user is admin
-    const [isAdmin] = useState(true)
+    const [isAdmin, setAdmin] = useState(players.find(player => player.id === userID).isAdmin)
+    useEffect(() => {
+        setAdmin(currentPlayer.isAdmin)
+    }, [currentPlayer.isAdmin])
 
     //check whether conditions to start the game are met
     const [startGame, setStartGame] = useState(players.length > 1)
@@ -75,7 +83,7 @@ function CreateGamePage(config) {
             
             {/* Start game card */}
             {isAdmin && startGame && (<Card>
-                            <button>
+                            <button className='start-game'>
                                 Start game
                             </button>
                         </Card>)}

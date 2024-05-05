@@ -9,3 +9,7 @@
 .invite-link-button {
     margin: 20px 0;
 }
+
+.start-game {
+    background-color: var(--secondary);
+}
