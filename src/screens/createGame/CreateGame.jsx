@@ -22,7 +22,7 @@ function CreateGamePage(config) {
     
     
     //TODO: wait for backend implementation of session + create models to dynamically load and update here
-    let players = [{id: 1, name: 'Player1', isAdmin: true}, {id: 2, name: 'Player2', isAdmin: false},/* {id: 3, name: 'Player3', isAdmin: false}, {id: 4, name: 'Player4', isAdmin: false}, {id: 5, name: 'Player5', isAdmin: false}, {id: 6, name: 'Player6', isAdmin: false}*/]
+    let players = [{id: 1, name: 'Player1', isAdmin: true}, {id: 2, name: 'Player2', isAdmin: false}, {id: 3, name: 'Player3', isAdmin: false}, {id: 4, name: 'Player4', isAdmin: false}, {id: 5, name: 'Player5', isAdmin: false}, {id: 6, name: 'Player6', isAdmin: false}]
     
     //TODO: implement more dynamically
     const userID = 1

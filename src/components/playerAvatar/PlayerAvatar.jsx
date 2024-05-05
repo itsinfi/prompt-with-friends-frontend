@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import './PlayerAvatar.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { faCrown } from '@fortawesome/free-solid-svg-icons'
 import getPlayerAvatarColor from '../../utils/playerAvatarColors'
 
 
@@ -17,8 +18,15 @@ const PlayerAvatar = ({ player }) => {
     const playerColor = getPlayerAvatarColor(player.id)
     
     return  (   <>
-        <div className='playerAvatar'>
-            <FontAwesomeIcon style={{color: playerColor}} className='playerIcon' icon={faUser} size='10x'/>
+        <div className='flex-column playerAvatar'>
+            
+
+            <FontAwesomeIcon style={{ color: player.isAdmin ? 'var(--warning)' : 'transparent' }} className='adminIcon' icon={faCrown} size='2x' />
+            
+
+            <FontAwesomeIcon style={{ color: playerColor }} className='playerIcon' icon={faUser} size='10x' />
+            
+                
             <h3 className='playerName'>
                 {player.name}  
             </h3>

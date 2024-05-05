@@ -1,12 +1,14 @@
+#invite-link-input {
+    min-width: 350px;
+    width: auto;
+    text-align: center;
+}
+
 .invite-link {
     align-items: center;
 }
 
-.invite-link-input {
-    margin: 20px 0;
-}
-
-.invite-link-button {
+.invite-link-input, .invite-link-button {
     margin: 20px 0;
 }
 
