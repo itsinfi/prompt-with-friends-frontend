@@ -1,6 +1,5 @@
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import './SnackBar.css'
 
 const snackBarOptions = { position: 'top-right', autoClose: 3000, theme: "light"}
 

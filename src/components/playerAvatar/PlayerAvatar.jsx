@@ -28,7 +28,7 @@ const PlayerAvatar = ({ player }) => {
             
                 
             <h3 className='playerName'>
-                {player.name}  
+                {`Spieler${player.id}`}  
             </h3>
         </div>
                 </>

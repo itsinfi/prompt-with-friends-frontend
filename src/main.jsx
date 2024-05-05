@@ -5,7 +5,6 @@ import Config from './utils/config'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import HomePage from './screens/home/Home'
 import CreateGamePage from './screens/createGame/CreateGame'
-import SocketService from './services/SocketService'
 
 //load config
 await Config.loadConfig()
@@ -27,10 +26,8 @@ const router = createBrowserRouter(
     },
     {
       path: "/createGame",
-      element: <CreateGamePage config={ Config.config } />,
+      element: <CreateGamePage config={Config.config} />,
       loader: () => {
-        SocketService.init(Config.config)
-        SocketService.connectToSession('1')
         return 1
       },
       children: [

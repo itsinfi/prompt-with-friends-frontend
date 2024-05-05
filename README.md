@@ -25,3 +25,4 @@
 - *Font Awesome Icons in React* [https://docs.fontawesome.com/v5/web/use-with/react]
 - *React - Toastify (Snackbars)* [https://fkhadra.github.io/react-toastify/introduction] 
 - *Socket IO - How to use with React*: [https://socket.io/how-to/use-with-react]
+- *React - Spinner* [https://www.npmjs.com/package/react-spinners]
