@@ -5,6 +5,7 @@ import Config from './utils/config'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import HomePage from './screens/home/Home'
 import CreateGamePage from './screens/createGame/CreateGame'
+import SocketService from './services/SocketService'
 
 //load config
 await Config.loadConfig()
@@ -14,26 +15,27 @@ await Config.loadConfig()
  * Define routes here
  */
 const router = createBrowserRouter(
-  [{
-    path: "/",
-    element: <HomePage />,
-    loader: () => {
-      console.log('render home page')
-      return 1
+  [
+    {
+      path: "/",
+      element: <HomePage />,
+      loader: () => {
+        return 1
+      },
+      children: [
+      ]
     },
-    children: [
-    ]
-  },
-  {
-    path: "/createGame",
-    element: <CreateGamePage config={ Config.config } />,
-    loader: () => {
-      console.log('render create game page')
-      return 1
+    {
+      path: "/createGame",
+      element: <CreateGamePage config={ Config.config } />,
+      loader: () => {
+        SocketService.init(Config.config)
+        SocketService.connectToSession('1')
+        return 1
+      },
+      children: [
+      ]
     },
-    children: [
-    ]
-  },
   ],
   {
     future: {

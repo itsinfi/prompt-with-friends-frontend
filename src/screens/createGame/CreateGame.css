@@ -1,7 +1,6 @@
 #invite-link-input {
-    min-width: 350px;
-    width: auto;
-    text-align: center;
+    width: 80%;
+    max-width: 315px;
 }
 
 .invite-link {

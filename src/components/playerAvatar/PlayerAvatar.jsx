@@ -18,7 +18,7 @@ const PlayerAvatar = ({ player }) => {
     const playerColor = getPlayerAvatarColor(player.id)
     
     return  (   <>
-        <div className='flex-column playerAvatar'>
+        <div title={ player.isAdmin ? 'Admin' : '' } className='flex-column playerAvatar'>
             
 
             <FontAwesomeIcon style={{ color: player.isAdmin ? 'var(--warning)' : 'transparent' }} className='adminIcon' icon={faCrown} size='2x' />

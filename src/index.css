@@ -36,7 +36,7 @@
   font-style: italic;
 }
 
-:root {
+:root, body {
   font-family: Ubuntu, monospace;
   line-height: 1.5;
   font-weight: 400;
@@ -120,8 +120,9 @@ h1 {
 }
 
 button, input {
-  border-radius: 300px;
+  border-radius: 30px;
   background-color: var(--light-text);
+  color: var(--dark-text);
   font-size: 20px;
   border: 5px solid var(--border-color);
   padding: 10px;
@@ -146,15 +147,6 @@ button:disabled {
   opacity: 50%;
 }
 
-input {
-  background-color: var(--light-text);
-  color: var(--dark-text);
-  border: 5px solid var(--border-color);
-  border-radius: 30px;
-  padding: 10px;
-}
-
-
 .flex-row {
   display: flex;
   flex-direction: row;
@@ -174,7 +166,7 @@ footer {
   position: fixed;
   bottom: 0;
   display: flex;
-  opacity: 30%;
+  opacity: 40%;
   place-items: end;
   justify-content: center;
   width: 100%;

@@ -16,8 +16,6 @@ import PropTypes from 'prop-types'
  */
 function CreateGamePage(config) {
 
-    console.log(config)
-
     let session = { id: 1, code: '1bc823' }
     
     
