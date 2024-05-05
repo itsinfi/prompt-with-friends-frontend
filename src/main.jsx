@@ -7,7 +7,7 @@ import HomePage from './screens/home/Home'
 import CreateGamePage from './screens/createGame/CreateGame'
 
 //load config
-Config.loadConfig()
+await Config.loadConfig()
 
 
 /**
@@ -26,7 +26,7 @@ const router = createBrowserRouter(
   },
   {
     path: "/createGame",
-    element: <CreateGamePage />,
+    element: <CreateGamePage config={ Config.config } />,
     loader: () => {
       console.log('render create game page')
       return 1

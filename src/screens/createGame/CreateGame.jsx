@@ -5,7 +5,7 @@ import PlayerAvatar from '../../components/playerAvatar/PlayerAvatar'
 import { useEffect, useState } from 'react'
 import { ToastContainer } from 'react-toastify'
 import { SuccessSnackBar } from '../../components/snackBar/SnackBar'
-import Config from '../../utils/config'
+import PropTypes from 'prop-types'
 
 
 
@@ -14,7 +14,9 @@ import Config from '../../utils/config'
  * 
  * @returns
  */
-function CreateGamePage() {
+function CreateGamePage(config) {
+
+    console.log(config)
 
     let session = {id: 1, code: '1bc823'}
 
@@ -62,7 +64,7 @@ function CreateGamePage() {
                     Lade deine Freunde ein!
                 </h2>
                 <div className='invite-link-input'>
-                    <input id='invite-link-input' type='text' placeholder='loading...' value={`play.${Config.config.name}.com/${session.code}`} readOnly onClick={(event) => event.target.select()}/>
+                    <input id='invite-link-input' type='text' placeholder='loading...' value={`play.${config.config.name}.com/${session.code}`} readOnly onClick={(event) => event.target.select()}/>
                 </div>
                 <div className='invite-link-button'>
                     <button onClick={copyInviteLink}>
@@ -83,6 +85,10 @@ function CreateGamePage() {
             <Outlet />
         </>
     )
+}
+
+CreateGamePage.propTypes = {
+    config: PropTypes.object.isRequired
 }
 
 export default CreateGamePage

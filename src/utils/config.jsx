@@ -8,6 +8,7 @@ class Config {
     static async loadConfig() {
         const response = await fetch('config.json')
         this.config = await response.json()
+        return this.config
     }
 
 }
