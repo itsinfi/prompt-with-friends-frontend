@@ -78,7 +78,7 @@ function SocketSessionConnector({ child , config } ) {
 
 SocketSessionConnector.propTypes = {
     child: PropTypes.node.isRequired,
-    config: PropTypes.object.isRequired
+    config: PropTypes.object
 }
 
 

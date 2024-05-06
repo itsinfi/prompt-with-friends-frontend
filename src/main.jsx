@@ -6,6 +6,7 @@ import HomePage from './screens/home/Home'
 import CreateGamePage from './screens/createGame/CreateGame'
 import SocketSessionConnector from './utils/wrappers/SocketSessionConnector'
 import ConfigLoader from './utils/wrappers/ConfigLoader'
+import ParticlesWrapper from './components/particles/ParticlesWrapper'
 
 
 /**
@@ -15,7 +16,7 @@ const router = createBrowserRouter(
   [
     {
       path: "/",
-      element: <HomePage />,
+      element: <ParticlesWrapper child={ <HomePage/> } />,
       loader: () => {
         return 1
       },
@@ -24,11 +25,14 @@ const router = createBrowserRouter(
     },
     {
       path: "/createGame",
-      element: <ConfigLoader
-                child={<SocketSessionConnector
-                  child={<CreateGamePage />} 
-                  />} 
-                />,
+      element: <ParticlesWrapper
+        child={
+          <ConfigLoader
+            child={<SocketSessionConnector
+              child={<CreateGamePage />}
+            />}
+          />
+                }/>,
       loader: () => {
         return 1
       },

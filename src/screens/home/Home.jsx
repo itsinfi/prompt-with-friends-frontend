@@ -23,7 +23,7 @@ function HomePage() {
           </button>
         </Link>
       </div>
-      <Outlet/>
+      <Outlet />
     </>
   )
 }
