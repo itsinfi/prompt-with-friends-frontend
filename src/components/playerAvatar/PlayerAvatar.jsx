@@ -13,7 +13,7 @@ import getPlayerAvatarColor from '../../utils/playerAvatarColors'
  * @param name name of player 
  * @returns visualization of a player
  */
-const PlayerAvatar = ({ player }) => {
+const PlayerAvatar = ({ player, currentPlayerID }) => {
 
     const playerColor = getPlayerAvatarColor(player.id)
     
@@ -28,7 +28,7 @@ const PlayerAvatar = ({ player }) => {
             
                 
             <h3 className='playerName'>
-                {`Spieler${player.id}`}  
+                {`Spieler ${player.id}${player.id === currentPlayerID ? ' (Du)' : ''}`}  
             </h3>
         </div>
                 </>
@@ -37,6 +37,7 @@ const PlayerAvatar = ({ player }) => {
 
 PlayerAvatar.propTypes = {
     player: PropTypes.object.isRequired,
+    currentPlayerID: PropTypes.number.isRequired,
 }
 
 

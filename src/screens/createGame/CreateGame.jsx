@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react'
 import { ToastContainer } from 'react-toastify'
 import { SuccessSnackBar } from '../../components/snackBar/SnackBar'
 import PropTypes from 'prop-types'
-import SocketService from '../../services/SocketService'
 import LoadingSpinner from '../../components/loadingSpinner/LoadingSpinner'
 
 
@@ -16,50 +15,7 @@ import LoadingSpinner from '../../components/loadingSpinner/LoadingSpinner'
  * 
  * @returns
  */
-function CreateGamePage(config) {
-
-    const [socket, setSocket] = useState(null)
-
-    //session data
-    const [session, setSession] = useState(null)
-
-    //players in session
-    const [players, setPlayers] = useState(null)
-    
-    //current user id
-    const [userID, setUser] = useState(null)
-
-    //TODO: implement function to check if user is admin
-    const [isAdmin, setAdmin] = useState(true) //useState(/*players.find(player => player.id === userID).isAdmin*/)
-
-    
-    //init socket.io and check vor joining/leaving players
-    useEffect(() => {
-
-        SocketService.init(config, 1, () => {
-            const _socket = SocketService.socket
-            setSocket(_socket)
-            setPlayers(_socket.players)
-            setSession({ id: _socket.sessionID, code: _socket.sessionID })
-            setUser(_socket.userID)
-        })
-
-        SocketService.on('updatePlayers', (data) => {
-            console.log(data.players)
-            setPlayers(data.players)
-        })
-
-        return () => {
-            SocketService.disconnect()
-        }
-        
-    }, [config])
-
-
-    //TODO: implement new use effect (best to also use socket io)
-    // useEffect(() => {
-    //     setAdmin(currentPlayer.isAdmin)
-    // }, [currentPlayer.isAdmin])
+function CreateGamePage({ config, socket, session, currentPlayer, players }) {
 
 
     //check whether conditions to start the game are met
@@ -82,10 +38,6 @@ function CreateGamePage(config) {
 
     //Success Snack Bar for copying to clipboard
     const copySuccessSnackBar = SuccessSnackBar('Link kopiert!')
-
-    if (socket) {
-        console.log(`PLAYERS: ${players}`)
-    }
     
 
 
@@ -105,8 +57,8 @@ function CreateGamePage(config) {
                         <Card>
                             <div className='flex-row'>
                                 {//TODO: use player model && override isADmin
-                                    players.map(player => (
-                                        <PlayerAvatar key={player} player={{ id: player, isAdmin: userID === player }}/>
+                                    players.map(playerID => (
+                                        <PlayerAvatar key={playerID} player={{ id: playerID, isAdmin: playerID === currentPlayer.id }} currentPlayerID={currentPlayer.id}/>
                                     ))
                                 }
                             </div>
@@ -118,7 +70,7 @@ function CreateGamePage(config) {
                                 Lade deine Freunde ein!
                             </h2>
                             <div className='invite-link-input'>
-                                <input id='invite-link-input' type='text' placeholder='loading...' value={`play.${config.config.name}.com/${session.code}`} readOnly onClick={(event) => event.target.select()}/>
+                                <input id='invite-link-input' type='text' placeholder='loading...' value={`play.${config.name}.com/${session.code}`} readOnly onClick={(event) => event.target.select()}/>
                             </div>
                             <div className='invite-link-button'>
                                 <button onClick={copyInviteLink}>
@@ -128,7 +80,7 @@ function CreateGamePage(config) {
                         </Card>
                         
                         {/* Start game card */}
-                            {isAdmin && startGame
+                            {currentPlayer.isAdmin && startGame
                                 && (<Card>
                                         <button className='start-game'>
                                             Start game
@@ -149,7 +101,11 @@ function CreateGamePage(config) {
 }
 
 CreateGamePage.propTypes = {
-    config: PropTypes.object.isRequired,
+    config: PropTypes.object,
+    socket: PropTypes.object,
+    session: PropTypes.object,
+    currentPlayer: PropTypes.object,
+    players: PropTypes.array
 }
 
 export default CreateGamePage

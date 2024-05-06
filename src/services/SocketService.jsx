@@ -20,10 +20,10 @@ class SocketService {
     static init(config, sessionID, onConnection) {
         
         //check backend host config
-        if (config.config.be_host) {
+        if (config.be_host) {
 
             //init, but dont connect yet
-            this.socket = io(config.config.be_host, { autoConnect: false })
+            this.socket = io(config.be_host, { autoConnect: false })
 
             //TODO: remove, only for dev purposes
             //prints out every response in console

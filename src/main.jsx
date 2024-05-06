@@ -1,13 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
-import Config from './utils/config'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import HomePage from './screens/home/Home'
 import CreateGamePage from './screens/createGame/CreateGame'
-
-//load config
-await Config.loadConfig()
+import SocketSessionConnector from './utils/wrappers/SocketSessionConnector'
+import ConfigLoader from './utils/wrappers/ConfigLoader'
 
 
 /**
@@ -26,7 +24,11 @@ const router = createBrowserRouter(
     },
     {
       path: "/createGame",
-      element: <CreateGamePage config={Config.config} />,
+      element: <ConfigLoader
+                child={<SocketSessionConnector
+                  child={<CreateGamePage />} 
+                  />} 
+                />,
       loader: () => {
         return 1
       },
