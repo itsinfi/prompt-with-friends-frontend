@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 particlesJS("particles-js", {
     "particles": {
       "number": {
