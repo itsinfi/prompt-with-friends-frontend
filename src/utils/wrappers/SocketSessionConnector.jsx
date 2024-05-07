@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { useState, useEffect, cloneElement, useRef } from 'react'
+import { useState, useEffect, cloneElement } from 'react'
 import SocketService from '../../services/SocketService'
 import LoadingSpinner from '../../components/loadingSpinner/LoadingSpinner'
 
