@@ -24,14 +24,15 @@ function ParticlesWrapper({ child }) {
         }
         document.body.appendChild(particlesScript);
 
+        window.scrollTo(0, 0)
 
         return () => {
         document.body.removeChild(particlesScript);
         };
-    })
+    }, [])
 
     return (
-        <>  
+        <>
             <div id = "particles-js" ></div>
             { child }
         </>

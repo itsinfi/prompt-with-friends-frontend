@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 import { useState, useEffect, cloneElement } from 'react'
 import LoadingSpinner from '../../components/loadingSpinner/LoadingSpinner'
-import Card from '../../components/card/Card'
 
 
 /**
@@ -33,22 +32,16 @@ function ConfigLoader({ child }) {
 
     }, [])
 
-    return (
-        <>
-            {   //check if config has been loaded
-                !config ? (
-            
-                    <Card>
-                        <LoadingSpinner />
-                    </Card>
 
-                ) : (
-                        //load element and add config to properties
-                        cloneElement(child, {config: config})
-                )
-            }
-        </>
-    )
+
+    //check if config has been loaded
+    if (!config) {
+        return <LoadingSpinner />
+    }
+
+
+    //load element and add config to properties
+    return cloneElement(child, {config: config})
 
 }
 

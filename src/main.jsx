@@ -7,6 +7,7 @@ import CreateGamePage from './screens/createGame/CreateGame'
 import SocketSessionConnector from './utils/wrappers/SocketSessionConnector'
 import ConfigLoader from './utils/wrappers/ConfigLoader'
 import ParticlesWrapper from './components/particles/ParticlesWrapper'
+import ErrorMessage from './components/errorMessage/ErrorMessage'
 
 
 /**
@@ -25,14 +26,16 @@ const router = createBrowserRouter(
     },
     {
       path: "/createGame",
-      element: <ParticlesWrapper
-        child={
-          <ConfigLoader
-            child={<SocketSessionConnector
-              child={<CreateGamePage />}
-            />}
-          />
-                }/>,
+      element: <ErrorMessage>
+          <ParticlesWrapper
+            child={
+              <ConfigLoader
+                child={<SocketSessionConnector
+                  child={<CreateGamePage />}
+                />}
+              />
+                    }/>
+      </ErrorMessage> ,
       loader: () => {
         return 1
       },
@@ -52,11 +55,10 @@ const router = createBrowserRouter(
 
 
 
-/**
- * Render app
- */
+
+//Render app
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+      <RouterProvider router={router}/>
   </React.StrictMode>,
 )

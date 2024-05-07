@@ -1,0 +1,14 @@
+.error-container{
+    border-radius: 30px;
+    padding: 50px;
+}
+
+.error-button{
+    margin-top: 25px;
+    background-color: var(--error);
+    color: var(--light-text);
+}
+
+.error-text{
+    text-align: center;
+}

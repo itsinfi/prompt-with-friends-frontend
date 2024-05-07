@@ -44,13 +44,9 @@ function CreateGamePage({ config, socket, session, currentPlayer, players }) {
     return (
         <>
             {   //check if socket connection has been established + players are loaded
-                !socket && !players ? (
-            
-                <Card>
-                    <LoadingSpinner/>
-                </Card>
-
-            ) : (
+                !socket && !players ? <LoadingSpinner />
+                
+                    : (
             
                     <>
                         {/* Player Avatars */}

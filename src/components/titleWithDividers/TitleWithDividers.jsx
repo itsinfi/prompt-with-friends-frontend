@@ -10,15 +10,14 @@ import './TitleWithDividers.css'
  */
 const TitleWithDividers = ({ title }) => {
     
-    return  (  <>
-                    <div className='titleWithDividers'>
-                        <div className='divider'></div>
-                        <h1 className='title'>
-                            {title}
-                        </h1>
-                        <div className='divider'></div>
-                    </div>
-                </>
+    return  (
+                <div className='titleWithDividers'>
+                    <div className='divider'></div>
+                    <h1 className='title'>
+                        {title}
+                    </h1>
+                    <div className='divider'></div>
+                </div>
             )
 }
 

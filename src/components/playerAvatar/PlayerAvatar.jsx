@@ -17,7 +17,7 @@ const PlayerAvatar = ({ player, currentPlayerID }) => {
 
     const playerColor = getPlayerAvatarColor(player.id)
     
-    return  (   <>
+    return  (
         <div title={ player.isAdmin ? 'Admin' : '' } className='flex-column playerAvatar'>
             
 
@@ -31,7 +31,6 @@ const PlayerAvatar = ({ player, currentPlayerID }) => {
                 {`Spieler ${player.id}${player.id === currentPlayerID ? ' (Du)' : ''}`}  
             </h3>
         </div>
-                </>
             )
 }
 

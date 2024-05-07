@@ -1,8 +1,11 @@
 import ClipLoader from "react-spinners/ClipLoader";
+import Card from "../card/Card";
 
 const LoadingSpinner = () => {
-    return  (
-                <ClipLoader size='200px' color='var(--primary)' cssOverride={{borderWidth: '20px', margin: '50px'}} />
+    return (
+                <Card>
+                    <ClipLoader size='200px' color='var(--primary)' cssOverride={{borderWidth: '20px', margin: '50px'}} />
+                </Card>
             )
 }
 
