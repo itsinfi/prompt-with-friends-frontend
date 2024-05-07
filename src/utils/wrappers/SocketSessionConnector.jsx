@@ -34,7 +34,7 @@ function SocketSessionConnector({ child , config } ) {
     //init socket.io and check vor joining/leaving players
     useEffect(() => {
 
-        SocketService.init(config, 2, () => {
+        SocketService.init(config, 1, () => {
             const _socket = SocketService.socket
             setSocket(undefined)
             setPlayers(_socket.players)
