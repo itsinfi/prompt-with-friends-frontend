@@ -14,9 +14,9 @@ function HomePage() {
 
   return (
     <>
-      <div className='js-count-particles'>
-        <TitleWithDividers title='PromptWithFriends'/>
+      <TitleWithDividers title='PromptWithFriends'/>
         
+      <div className='center-screen'>
         <Link to='/createGame' relative='path'>
           <button className='createSession'>
             Spiel erstellen

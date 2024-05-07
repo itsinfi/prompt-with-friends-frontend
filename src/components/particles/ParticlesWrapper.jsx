@@ -18,7 +18,7 @@ function ParticlesWrapper({ child }) {
         particlesScript.async = true;
         particlesScript.onload = () => {
             const particleOptionsScript = document.createElement('script');
-            particleOptionsScript.src = '/src/components/particles/particles.js';
+            particleOptionsScript.src = '/src/components/particles/particleOptions.js';
             particleOptionsScript.async = true;
             document.body.appendChild(particleOptionsScript);
         }

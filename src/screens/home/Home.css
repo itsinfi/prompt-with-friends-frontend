@@ -3,7 +3,6 @@
 }
 
 .createSession {
-  margin-top: 200px;
   padding: 40px;
   will-change: filter, transform, box-shadow, background-color, opacity, border-color;
   transition: filter 200ms, transform 400ms, box-shadow 600ms, background-color 300ms, opacity 100ms, border-color 100ms;

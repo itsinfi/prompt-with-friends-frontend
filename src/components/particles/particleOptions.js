@@ -3,7 +3,7 @@
 particlesJS("particles-js", {
     "particles": {
       "number": {
-        "value": 100,
+        "value": 50,
         "density": {
           "enable": false,
           "value_area": 800
@@ -28,12 +28,12 @@ particlesJS("particles-js", {
         }
       },
       "opacity": {
-        "value": 0.2,
+        "value": 0,
         "random": false,
         "anim": {
           "enable": false,
           "speed": 1,
-          "opacity_min": 0.1,
+          "opacity_min": 0,
           "sync": false
         }
       },
@@ -93,7 +93,7 @@ particlesJS("particles-js", {
           "distance": 400,
           "size": 40,
           "duration": 2,
-          "opacity": 8,
+          "opacity": 3,
           "speed": 3
         },
         "repulse": {
