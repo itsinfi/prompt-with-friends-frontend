@@ -21,9 +21,7 @@ function CreateGamePage({ config, socket, session, currentPlayer, players }) {
     //check whether conditions to start the game are met
     const [startGame, setStartGame] = useState(null)
     useEffect(() => {
-        if (socket && players) {
-            setStartGame(players.length > 1)
-        }
+        setStartGame(players.length > 1)
     }, [socket, players])
 
 
@@ -38,7 +36,6 @@ function CreateGamePage({ config, socket, session, currentPlayer, players }) {
 
     //Success Snack Bar for copying to clipboard
     const copySuccessSnackBar = SuccessSnackBar('Link kopiert!')
-    
 
 
     return (
@@ -52,9 +49,9 @@ function CreateGamePage({ config, socket, session, currentPlayer, players }) {
                         {/* Player Avatars */}
                         <Card>
                             <div className='flex-row'>
-                                {//TODO: use player model && override isADmin
+                                {//TODO: use player model && override isHost
                                     players.map(playerID => (
-                                        <PlayerAvatar key={playerID} player={{ id: playerID, isAdmin: playerID === currentPlayer.id }} currentPlayerID={currentPlayer.id}/>
+                                        <PlayerAvatar key={playerID} player={{ id: playerID, isHost: playerID === '1' }} currentPlayerID={currentPlayer.id}/>
                                     ))
                                 }
                             </div>
@@ -76,7 +73,7 @@ function CreateGamePage({ config, socket, session, currentPlayer, players }) {
                         </Card>
                         
                         {/* Start game card */}
-                            {currentPlayer.isAdmin && startGame
+                            {currentPlayer.isHost && startGame
                                 && (<Card>
                                         <button className='start-game'>
                                             Start game

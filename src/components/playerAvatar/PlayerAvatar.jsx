@@ -18,10 +18,10 @@ const PlayerAvatar = ({ player, currentPlayerID }) => {
     const playerColor = getPlayerAvatarColor(player.id)
     
     return  (
-        <div title={ player.isAdmin ? 'Admin' : '' } className='flex-column playerAvatar'>
+        <div title={ player.isHost ? 'Admin' : '' } className='flex-column playerAvatar'>
             
 
-            <FontAwesomeIcon style={{ color: player.isAdmin ? 'var(--warning)' : 'transparent' }} className='adminIcon' icon={faCrown} size='2x' />
+            <FontAwesomeIcon style={{ color: player.isHost ? 'var(--warning)' : 'transparent' }} className='adminIcon' icon={faCrown} size='2x' />
             
 
             <FontAwesomeIcon style={{ color: playerColor }} className='playerIcon' icon={faUser} size='10x' />
@@ -36,7 +36,7 @@ const PlayerAvatar = ({ player, currentPlayerID }) => {
 
 PlayerAvatar.propTypes = {
     player: PropTypes.object.isRequired,
-    currentPlayerID: PropTypes.number.isRequired,
+    currentPlayerID: PropTypes.string.isRequired,
 }
 
 

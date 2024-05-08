@@ -23,11 +23,9 @@ class ErrorMessage extends React.Component {
             error,
             errorInfo
         })
-        console.log(this.state)
     }
 
     render() {
-        console.log(this.state.hasError)
         if (this.state.hasError) {
             return (
                 <Card>

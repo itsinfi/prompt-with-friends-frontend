@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { useState, useEffect, cloneElement } from 'react'
-import LoadingSpinner from '../../components/loadingSpinner/LoadingSpinner'
+import LoadingSpinner from '../components/loadingSpinner/LoadingSpinner'
 
 
 /**

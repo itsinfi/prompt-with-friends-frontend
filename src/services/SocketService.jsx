@@ -16,6 +16,8 @@ class SocketService {
      * @param {*} config configuration object
      * @param {*} sessionID id of session to connect to
      * @param {*} onConnection callback function for when backend returns session data response
+     * @param {*} previousUserID user id from session storage (if existing)
+     * @param {*} previousSessionID session id from session storage (if existing)
      */
     static init(config, sessionID, onConnection) {
         
@@ -25,6 +27,7 @@ class SocketService {
             //init, but dont connect yet
             this.socket = io(config.be_host, { autoConnect: false })
 
+            
             //TODO: remove, only for dev purposes
             //prints out every response in console
             this.socket.onAny((event, ...args) => {
@@ -33,7 +36,7 @@ class SocketService {
 
             //define how to handle session data returned by backend (and then execute callback function)
             this.handleSessionData(onConnection)
-
+            
             //define how to handle players joining/leaving session
             this.socket.on('updatePlayers', (players) => {
                 this.socket.players = players 
@@ -50,8 +53,22 @@ class SocketService {
      * @param {*} sessionID id of session to connect to (TODO: change to code instead?!)
      */
     static connectToSession(sessionID) {
-        this.disconnect()
-        this.socket.auth = { sessionID: sessionID }
+
+        //check for userID in sessionStorage
+        const previousUserID = sessionStorage.getItem('userID')
+
+        //if found use userID to authenticate
+        if (previousUserID !== undefined || null) {
+            this.socket.auth = { 'sessionID': sessionID, 'userID': previousUserID }
+
+        //else make sure to disconnect from current session
+        } else {
+            this.disconnect()
+            sessionStorage.removeItem('userID')
+            this.socket.auth = { 'sessionID': sessionID }
+        }
+
+        //connect to server side socket
         this.socket.connect()
     }
         
@@ -64,14 +81,14 @@ class SocketService {
         this.socket.on("session", ({ sessionID, userID, players }) => {
 
             // attach the session ID to the next reconnection attempts
-            this.socket.auth = { sessionID };
+            this.socket.auth = { sessionID: sessionID, userID: userID };
             this.socket.sessionID = sessionID
 
-            // // store it in the localStorage
-            // localStorage.setItem("sessionID", sessionID);
-            // // save the ID of the user
+            // save the ID of the user
             this.socket.userID = userID;
-            // localStorage.setItem("userID", userID);
+            sessionStorage.setItem("userID", userID);
+
+            //save players
             this.socket.players = players
 
             onConnection()

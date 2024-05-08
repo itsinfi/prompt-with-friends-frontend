@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import { useState, useEffect, cloneElement } from 'react'
-import SocketService from '../../services/SocketService'
-import LoadingSpinner from '../../components/loadingSpinner/LoadingSpinner'
+import SocketService from '../services/SocketService'
+import LoadingSpinner from '../components/loadingSpinner/LoadingSpinner'
 
 
 /**
@@ -26,29 +26,44 @@ function SocketSessionConnector({ child , config } ) {
     const [currentPlayer, setCurrentPlayer] = useState(null)
 
     //TODO: implement function to check if user is admin
-    // const [isAdmin, setAdmin] = useState(true) //useState(/*players.find(player => player.id === userID).isAdmin*/)
+    // const [isHost, setAdmin] = useState(true) //useState(/*players.find(player => player.id === userID).isHost*/)
 
     const [error, setError] = useState(null)
 
-    
+
     //init socket.io and check vor joining/leaving players
     useEffect(() => {
 
+        //TODO: change how values are inserted
+
         SocketService.init(config, 1, () => {
             const _socket = SocketService.socket
+
+            //init props
             setSocket(undefined)
             setPlayers(_socket.players)
+
+            //TODO: update session with session object from backend
             setSession({ id: _socket.sessionID, code: _socket.sessionID })
-            setCurrentPlayer({ id: _socket.userID, isAdmin: true })
+
+            //TODO: get current player from players (if not possible do error handling)
+            setCurrentPlayer({ id: _socket.userID, isHost: _socket.userID === '1' })
         })
 
         SocketService.on('updatePlayers', (data) => {
             setPlayers(data.players)
+            //TODO: update current player based on this function
+        });
+
+        SocketService.on('updateSession', (data) => {
+            setSession(data.session)
         });
 
         SocketService.on('error', (err) => {
             console.error(err.message)
             SocketService.disconnect()
+            sessionStorage.removeItem('userID')
+            sessionStorage.removeItem('sessionID')
             setError(new Error(err.message))
         })
 
@@ -57,13 +72,6 @@ function SocketSessionConnector({ child , config } ) {
         }
         
     }, [config])
-
-
-
-    //TODO: implement new use effect (best to also use socket io)
-    // useEffect(() => {
-    //     setAdmin(currentPlayer.isAdmin)
-    // }, [currentPlayer.isAdmin])
 
 
     //check if there is an error

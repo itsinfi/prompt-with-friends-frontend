@@ -26,3 +26,4 @@
 - *React - Toastify (Snackbars)* [https://fkhadra.github.io/react-toastify/introduction] 
 - *Socket IO - How to use with React*: [https://socket.io/how-to/use-with-react]
 - *React - Spinner* [https://www.npmjs.com/package/react-spinners]
+- *Error Boundaries and Render Props* [https://www.youtube.com/watch?v=gWlEUcUZ3kI]
