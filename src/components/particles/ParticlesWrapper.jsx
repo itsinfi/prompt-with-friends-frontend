@@ -11,6 +11,8 @@ import './ParticlesWrapper.css'
  */
 function ParticlesWrapper({ child }) {
 
+    console.log('update state of particles wrapper')
+
     //nice animations from particles.js
     useEffect(() => {
         const particlesScript = document.createElement('script');

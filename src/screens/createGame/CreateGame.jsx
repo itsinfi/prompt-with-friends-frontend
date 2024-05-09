@@ -17,6 +17,8 @@ import LoadingSpinner from '../../components/loadingSpinner/LoadingSpinner'
  */
 function CreateGamePage({ config, socket, session, currentPlayer, players }) {
 
+    console.log('update state of create game page')
+
 
     //check whether conditions to start the game are met
     const [startGame, setStartGame] = useState(null)

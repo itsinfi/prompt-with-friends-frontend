@@ -4,10 +4,11 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import HomePage from './screens/home/Home'
 import CreateGamePage from './screens/createGame/CreateGame'
-import SocketSessionConnector from './utils/SocketSessionConnector'
+import SessionConnector from './utils/SessionConnector'
 import ConfigLoader from './utils/ConfigLoader'
 import ParticlesWrapper from './components/particles/ParticlesWrapper'
 import ErrorMessage from './components/errorMessage/ErrorMessage'
+import SessionCreator from './utils/SessionCreator'
 
 
 /**
@@ -30,14 +31,30 @@ const router = createBrowserRouter(
           <ParticlesWrapper
             child={
               <ConfigLoader
-                child={<SocketSessionConnector
-                  child={<CreateGamePage />}
-                />}
+              child={ <SessionCreator/> }
               />
                     }/>
       </ErrorMessage> ,
       loader: () => {
         return 1
+      },
+      children: [
+      ]
+    },
+    {
+      path: "/:session",
+      element: <ErrorMessage>
+          <ParticlesWrapper
+            child={
+              <ConfigLoader
+                child={<SessionConnector
+                  child={<CreateGamePage />}
+                />}
+              />
+                    }/>
+      </ErrorMessage> ,
+      loader: ({ params }) => {
+        return params.session
       },
       children: [
       ]

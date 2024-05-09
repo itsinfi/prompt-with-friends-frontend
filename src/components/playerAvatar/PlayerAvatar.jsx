@@ -24,11 +24,11 @@ const PlayerAvatar = ({ player, currentPlayerID }) => {
             <FontAwesomeIcon style={{ color: player.isHost ? 'var(--warning)' : 'transparent' }} className='adminIcon' icon={faCrown} size='2x' />
             
 
-            <FontAwesomeIcon style={{ color: playerColor }} className='playerIcon' icon={faUser} size='10x' />
+            <FontAwesomeIcon style={{ color: playerColor }} className='playerIcon' icon={faUser} size='7x' />
             
                 
             <h3 className='playerName'>
-                {`Spieler ${player.id}${player.id === currentPlayerID ? ' (Du)' : ''}`}  
+                {`Spieler ${player.id}${player.id === currentPlayerID.toString() ? ' (Du)' : ''}`}  
             </h3>
         </div>
             )
@@ -36,7 +36,7 @@ const PlayerAvatar = ({ player, currentPlayerID }) => {
 
 PlayerAvatar.propTypes = {
     player: PropTypes.object.isRequired,
-    currentPlayerID: PropTypes.string.isRequired,
+    currentPlayerID: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
 }
 
 

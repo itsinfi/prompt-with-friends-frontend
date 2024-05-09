@@ -11,6 +11,8 @@ import LoadingSpinner from '../components/loadingSpinner/LoadingSpinner'
  */
 function ConfigLoader({ child }) {
 
+    console.log('update state of config loader')
+
     //config
     const [config, setConfig] = useState(null)
 

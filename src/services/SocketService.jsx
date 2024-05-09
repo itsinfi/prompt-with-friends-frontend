@@ -14,18 +14,18 @@ class SocketService {
      * init socket connection to backend
      * 
      * @param {*} config configuration object
-     * @param {*} sessionID id of session to connect to
+     * @param {*} sessionCode code of session to connect to
      * @param {*} onConnection callback function for when backend returns session data response
      * @param {*} previousUserID user id from session storage (if existing)
-     * @param {*} previousSessionID session id from session storage (if existing)
+     * @param {*} previousSessionCode session code from session storage (if existing)
      */
-    static init(config, sessionID, onConnection) {
+    static async init(config, sessionCode, onConnection) {
         
         //check backend host config
         if (config.be_host) {
 
             //init, but dont connect yet
-            this.socket = io(config.be_host, { autoConnect: false })
+            this.socket = io(config.be_host, { autoConnect: false, reconnection: false })
 
             
             //TODO: remove, only for dev purposes
@@ -43,31 +43,32 @@ class SocketService {
             })
 
             //connect to session
-            this.connectToSession(sessionID)
+            this.connectToSession(sessionCode)
         }
     }
 
     /**
      * disconnect to previous session and connect to new one
      * 
-     * @param {*} sessionID id of session to connect to (TODO: change to code instead?!)
+     * @param {*} sessionCode code of session to connect to
      */
-    static connectToSession(sessionID) {
+    static connectToSession(sessionCode) {
 
-        //check for userID in sessionStorage
+        //check for userID and session code in session storage
         const previousUserID = sessionStorage.getItem('userID')
+        const previousSessionCode = sessionStorage.getItem('sessionCode')
 
-        //if found use userID to authenticate
-        if (previousUserID !== undefined || null) {
-            this.socket.auth = { 'sessionID': sessionID, 'userID': previousUserID }
+        //if found + session code is same as session to connect to: use userID to authenticate
+        if ((previousUserID !== undefined || null) && (previousSessionCode !== undefined || null) && (previousSessionCode == sessionCode)) {
+            this.socket.auth = { 'sessionCode': sessionCode, 'userID': previousUserID }
 
         //else make sure to disconnect from current session
         } else {
             this.disconnect()
             sessionStorage.removeItem('userID')
-            this.socket.auth = { 'sessionID': sessionID }
+            this.socket.auth = { 'sessionCode': sessionCode }
         }
-
+        
         //connect to server side socket
         this.socket.connect()
     }
@@ -78,19 +79,24 @@ class SocketService {
      * @param {*} onConnection callback function to execute
      */
     static handleSessionData(onConnection) {
-        this.socket.on("session", ({ sessionID, userID, players }) => {
 
-            // attach the session ID to the next reconnection attempts
-            this.socket.auth = { sessionID: sessionID, userID: userID };
-            this.socket.sessionID = sessionID
+        this.socket.on("session", ({ sessionCode, userID, players }) => {
 
-            // save the ID of the user
+            // attach the session code and userid to the next reconnection attempts
+            this.socket.auth = { sessionCode: sessionCode, userID: userID };
+
+            //store them as socket attributes as well
+            this.socket.sessionCode = sessionCode
             this.socket.userID = userID;
+
+            // save them in session storage for later reconnection attempts as well
             sessionStorage.setItem("userID", userID);
+            sessionStorage.setItem("sessionCode", sessionCode);
 
             //save players
             this.socket.players = players
 
+            //exec callback function
             onConnection()
         });
     }
