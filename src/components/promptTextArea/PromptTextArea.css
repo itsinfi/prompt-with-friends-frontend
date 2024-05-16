@@ -4,7 +4,6 @@
     align-items: end;
     justify-content: end;
     margin: 10px;
-    /* border-radius: 60px; */
 }
 
 .prompt-input, .prompt-output {
@@ -21,17 +20,10 @@
     margin-bottom: 10px;
     width: 60px;
     height: 60px;
+    background-color: var(--primary);
+    color: var(--light-text);
 }
 
-.prompt-preview-div {
-    margin-bottom: 20px;
-}
-
-.prompt-preview {
-    width: 95%;
-    /* max-width: 315px; */
-    /* max-height: 500px; */
-    /* overflow-y: scroll; */
-    /* resize: none; */
-    /* z-index: 100; */
+.prompt-button:disabled {
+    color: var(--primary-opacity)
 }

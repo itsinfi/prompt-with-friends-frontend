@@ -52,7 +52,7 @@ function PromptTextArea({ enableInput = false, onSubmitInput = () => { }, disabl
 
     return <div className={`prompt-text-div ${promptTextAreaFocused ? 'prompt-text-div-focus' : ''}`}>
                                     
-                <textarea className='prompt-input'
+                <textarea className={enableInput ? 'prompt-input' : 'prompt-output'}
                     disabled={disableInput}
                     readOnly={!enableInput}
                     value={enableInput ? promptText : initialValue}
