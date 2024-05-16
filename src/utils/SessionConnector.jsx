@@ -15,7 +15,7 @@ import { useLoaderData } from 'react-router-dom'
  */
 function SessionConnector({ child, config }) {
 
-    console.log('update state of session connector')
+    
     
     const sessionCode = useLoaderData()
 

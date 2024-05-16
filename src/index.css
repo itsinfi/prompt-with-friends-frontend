@@ -36,12 +36,13 @@
   font-style: italic;
 }
 
+/*general styles for root body*/
 :root, body {
   font-family: Ubuntu, monospace;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: dark;
+  color-scheme: light;
   color: rgba(255, 255, 255, 0.87);
   background-color: #000000;
   background: linear-gradient( 27deg, #C6425F, #ffee00);
@@ -74,7 +75,16 @@
   --toastify-color-error: var(--success);
 }
 
-h1, h2, h3, h4, h5, h6, button, p, div {
+/*only-body styles*/
+body {
+  min-width: 320px;
+  max-width: none;
+  min-height: 100vh;
+}
+
+
+/*text-related styles*/
+h1, h2, h3, h4, h5, h6, button, p, div, input, textarea {
   font-family: Ubuntu, monospace;
   color: var(--dark-text);
 }
@@ -83,16 +93,23 @@ h1, h2, h3, h4, h5, h6, button {
   font-weight: bold;
 }
 
-p {
+p, input, textarea {
   text-align: left;
 }
 
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+/*error style*/
 p.error {
   color: var(--error);
   text-align: center;
   font-weight: bold;
 }
 
+/*link styles*/
 a {
   font-weight: normal;
   font-style: italic;
@@ -108,18 +125,8 @@ a:hover {
   cursor: pointer;
 }
 
-body {
-  min-width: 320px;
-  max-width: none;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button, input {
+/*buttons, inputs, textareas*/
+button, input, .prompt-text-div {
   border-radius: 30px;
   background-color: var(--light-text);
   color: var(--dark-text);
@@ -129,24 +136,72 @@ button, input {
   will-change: box-shadow, border-color, transform, opacity, color, background-color;
   transition: box-shadow 300ms, border-color 200ms, transform 100ms, opacity 300ms, color 300ms, background-color 300ms;
 }
-button:hover, input:hover {
+button:hover/*, input:hover, .prompt-text-div:hover, .prompt-output:hover*/ {
   box-shadow: 0 2px 2px 2px var(--box-shadow);
   border-color: var(--box-shadow);
   color: var(--light-text);
   background-color: var(--dark-text);
   cursor: pointer;
 }
-button:active, input:focus{
+button:active, input:focus, .prompt-text-div-focus {
   box-shadow: 0 0 10px 10px var(--primary-opacity);
   border-color: var(--primary);
   transform: translateY(-2px);
   opacity: 70%;
   outline: none;
 }
-button:disabled {
+button:disabled, input:disabled, .prompt-text-div:disabled {
   opacity: 50%;
 }
+textarea {
+  resize: none;
+  max-height: 150px;
+  overflow-y: auto;
+  font-size: 20px;
+  padding: 30px;
+}
+textarea:focus {
+  border: none;
+  outline: none;
+}
 
+/*scrollbars*/
+html::-webkit-scrollbar {
+  background-color: var(--dark-text);
+}
+html::-webkit-scrollbar, textarea::-webkit-scrollbar {
+  width: 10px;
+  padding-right: 10px;
+  margin-right: 10px;
+}
+html::-webkit-scrollbar-track, textarea::-webkit-scrollbar-track {
+  border-radius: 30px;
+  background-color: transparent;
+}
+html::-webkit-scrollbar-corner, textarea::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+html::-webkit-scrollbar-thumb {
+  background-color: var(--secondary-opacity);
+  border-radius: 30px;
+  will-change: background-color !important;
+  transition: background-color 500ms !important;
+}
+textarea::-webkit-scrollbar-thumb {
+  background-color: var(--box-shadow);
+  border-radius: 30px;
+  will-change: background-color !important;
+  transition: background-color 500ms !important;
+}
+html::-webkit-scrollbar-thumb:hover {
+  background-color: var(--secondary);
+}
+textarea::-webkit-scrollbar-thumb:hover {
+  background-color: var(--dark-text);
+}
+
+
+/*rows and columns*/
 .flex-row {
   display: flex;
   flex-direction: row;
@@ -160,6 +215,7 @@ button:disabled {
   flex-wrap: wrap;
 }
 
+/*center styles*/
 .center-screen {
   position: fixed;
   top: 0;
@@ -171,8 +227,7 @@ button:disabled {
   align-items: center;
 }
 
-
-
+/*footer styles*/
 footer {
   position: fixed;
   bottom: 0;

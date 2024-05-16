@@ -1,0 +1,37 @@
+.prompt-text-div {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: end;
+    margin: 10px;
+    /* border-radius: 60px; */
+}
+
+.prompt-input, .prompt-output {
+    background-color: var(--dark-text);
+    color: var(--light-text);
+    width: 100%;
+    background-color: transparent;
+    color: black;
+    border: none;
+}
+
+.prompt-button {
+    margin: 0 10px;
+    margin-bottom: 10px;
+    width: 60px;
+    height: 60px;
+}
+
+.prompt-preview-div {
+    margin-bottom: 20px;
+}
+
+.prompt-preview {
+    width: 95%;
+    /* max-width: 315px; */
+    /* max-height: 500px; */
+    /* overflow-y: scroll; */
+    /* resize: none; */
+    /* z-index: 100; */
+}

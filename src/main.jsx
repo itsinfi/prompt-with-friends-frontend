@@ -9,6 +9,7 @@ import ConfigLoader from './utils/ConfigLoader'
 import ParticlesWrapper from './components/particles/ParticlesWrapper'
 import ErrorMessage from './components/errorMessage/ErrorMessage'
 import SessionCreator from './utils/SessionCreator'
+import InputPromptPage from './screens/inputPrompt/InputPrompt'
 
 
 /**
@@ -48,7 +49,7 @@ const router = createBrowserRouter(
             child={
               <ConfigLoader
                 child={<SessionConnector
-                  child={<CreateGamePage />}
+                  child={<InputPromptPage />}
                 />}
               />
                     }/>

@@ -13,11 +13,16 @@ import LoadingSpinner from '../../components/loadingSpinner/LoadingSpinner'
 /**
  * Create Game Page where user can invite other players and start the game
  * 
- * @returns
+ * @param config Config of the frontend
+ * @param socket Socket client object
+ * @param session Session client connected to
+ * @param currentPlayer Model of current player
+ * @param players Array of all players in the session
+ * @returns 
  */
 function CreateGamePage({ config, socket, session, currentPlayer, players }) {
 
-    console.log('update state of create game page')
+    
 
 
     //check whether conditions to start the game are met
