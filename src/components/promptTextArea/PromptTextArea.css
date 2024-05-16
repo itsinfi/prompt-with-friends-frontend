@@ -15,6 +15,14 @@
     border: none;
 }
 
+.prompt-input {
+    max-height: 150px;
+}
+
+.prompt-output {
+    max-height: none;
+}
+
 .prompt-button {
     margin: 0 10px;
     margin-bottom: 10px;
@@ -25,5 +33,6 @@
 }
 
 .prompt-button:disabled {
-    color: var(--primary-opacity)
+    background-color: var(--primary-opacity);
+    color: var(--light-text);
 }

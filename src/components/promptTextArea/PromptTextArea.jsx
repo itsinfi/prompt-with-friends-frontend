@@ -3,7 +3,7 @@ import './PromptTextArea.css'
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
-
+import { ErrorSnackBar } from '../../components/snackBar/SnackBar'
 
 
 /**
@@ -22,8 +22,13 @@ function PromptTextArea({ enableInput = false, onSubmitInput = () => { }, disabl
     // update height of prompt text area dynamically when there is a new line added
     const [promptText, setPromptText] = useState(initialValue);
     
-    // update value of text on change and update height
+    // update value of text area on change and update height
     const onChange = (event) => {
+
+        if (!enableInput) {
+            return
+        }
+
         const value = event.target.value;
         setPromptText(value);
     };
@@ -40,7 +45,7 @@ function PromptTextArea({ enableInput = false, onSubmitInput = () => { }, disabl
     
     // enable focus styling
     const onFocus = () => {
-        setPromptTextAreaFocused(true);
+        setPromptTextAreaFocused(enableInput);
     };
     
     // disable focus styling
@@ -49,22 +54,59 @@ function PromptTextArea({ enableInput = false, onSubmitInput = () => { }, disabl
     };
 
 
+    // listen for enter key press (without shift) to submit the input
+    const onKeyDown = (event) => {
+
+        if (!enableInput) {
+            return
+        }
+
+        if (event.key === 'Enter' && !event.shiftKey) {
+            event.preventDefault()
+
+            if (disableSubmit) {
+                console.log('disable submit')
+                disableSubmitError()
+                return
+            }
+
+            if (!promptText || promptText.isEmpty) {
+                promptIsEmptyError()
+                return
+            }
+    
+            onSubmitInput(promptText)
+        }
+
+    }
+
+    // Error to show if disableSubmit is true when submitting
+    const disableSubmitError = ErrorSnackBar('Bitte warten, die Anfrage wird noch verarbeitet.')
+
+    // Error to show if Prompt is empty when submitting
+    const promptIsEmptyError = ErrorSnackBar('Bitte das Feld ausfüllen.')
+
+
 
     return <div className={`prompt-text-div ${promptTextAreaFocused ? 'prompt-text-div-focus' : ''}`}>
                                     
+
+                {/* Text Area */}
                 <textarea className={enableInput ? 'prompt-input' : 'prompt-output'}
                     disabled={disableInput}
                     readOnly={!enableInput}
                     value={enableInput ? promptText : initialValue}
                     placeholder={placeholder}
                     onChange={onChange}
-                    rows={calculateRows(promptText) > 1 ? calculateRows(promptText) : 1}
+                    rows={calculateRows(enableInput ? promptText : initialValue) > 1 ? calculateRows(enableInput ? promptText : initialValue) : 1}
                     onFocus={onFocus}
-                    onBlur={onBlur} />
-                        
+                    onBlur={onBlur}
+                    onKeyDown={onKeyDown} />
+
+                {/* Send Button (show only if textarea is an input field) */}
                 {
                     enableInput ?
-                        <button className='prompt-button' disabled={ disableSubmit } onClick={ onSubmitInput }>
+                        <button className='prompt-button' disabled={ disableSubmit } onClick={ () => { onSubmitInput(promptText) } }>
                             <FontAwesomeIcon icon={faPaperPlane}/>
                         </button>
                     : ''

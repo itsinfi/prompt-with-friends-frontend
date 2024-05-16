@@ -1,0 +1,7 @@
+.yellow-timer {
+    color: var(--warning);
+}
+
+.red-timer {
+    color: var(--error)
+}

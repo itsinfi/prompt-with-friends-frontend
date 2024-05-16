@@ -1,14 +1,15 @@
 import './InputPrompt.css'
 import { Outlet } from 'react-router-dom'
 import Card from '../../components/card/Card'
-import PlayerAvatar from '../../components/playerAvatar/PlayerAvatar'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { ToastContainer } from 'react-toastify'
 import { ErrorSnackBar, InfoSnackBar, SuccessSnackBar } from '../../components/snackBar/SnackBar'
 import PropTypes from 'prop-types'
 import LoadingSpinner from '../../components/loadingSpinner/LoadingSpinner'
 import PromptTextArea from '../../components/promptTextArea/PromptTextArea'
 import TaskDescription from '../../components/task/TaskDescription'
+import Timer from '../../components/timer/Timer'
+import PromptingService from '../../services/PromptingService'
 
 
 
@@ -24,29 +25,53 @@ import TaskDescription from '../../components/task/TaskDescription'
  */
 function InputPromptPage({ config, socket, session, currentPlayer, players }) {
 
-    const result = { prompt: 'Ist Mayonaise ein Instrument, Thaddäus?', creator: '', result: 'Nein, Patrick, Mayonnaise ist kein Instrument. Und auch keine Kunstform, wie du vielleicht denkst. Aber sie kann auf eine köstliche Weise Teil von vielen Gerichten sein!' }
+    // Result Model
+    const [result, setResult] = useState(null)
 
-    const round = { time: '00:07', task: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.' }
+    // Round Model
+    const round = { time: '29', task: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.' }
 
+    // Disable submit for the prompt input form
+    const [disablePrompting, setDisablePrompting] = useState(false)
 
-    //check whether conditions to start the game are met
-    const [startGame, setStartGame] = useState(null)
-    useEffect(() => {
-        setStartGame(players.length > 1)
-    }, [socket, players])
+    
+    // Call Back function for sending a text prompt to generate a text
+    const sendPrompt = (prompt) => {
+        
+        // Check if Prompting should be allowed/Input is not null
+        if (disablePrompting || !prompt) {
+            return
+        }
 
-
-    //copy invite link to clipboard
-    const sendPrompt = () => {
+        // Show Prompt info snack bar
         promptInfoSnackBar()
-        promptErrorSnackBar()
-        // promptSuccessSnackBar()
+
+        // Disable sending a new prompt
+        setDisablePrompting(true)
+
+
+        // Send text prompt and provide callback function
+        PromptingService.sendTextPrompt(prompt, currentPlayer.id, session.code, (timestamp, result) => {
+
+            //if successful, save result model and show success snack bar
+            try {
+                setResult(result)
+                promptSuccessSnackBar()
+
+            //if not succesful, show error snack bar
+            } catch (error) {
+                promptErrorSnackBar()
+            }
+
+            // allow sending prompt
+            setDisablePrompting(false)
+        })
     }
 
     //Snack Bars for prompting feedback
     const promptSuccessSnackBar = SuccessSnackBar('Prompt erfolgreich generiert!')
     const promptInfoSnackBar = InfoSnackBar('Prompt wird generiert! Bitte kurz warten.')
-    const promptErrorSnackBar = ErrorSnackBar('Keine Verbindung!')
+    const promptErrorSnackBar = ErrorSnackBar('Prompt konnte nicht generiert werden!')
 
 
 
@@ -62,9 +87,8 @@ function InputPromptPage({ config, socket, session, currentPlayer, players }) {
                         <Card>
                             <h2>Spielfortschritt</h2>
                                 
-                            <h1>
-                                { round.time }
-                            </h1>
+                            <Timer seconds={round.time} />
+                                
                         </Card>
                         
                         
@@ -85,7 +109,7 @@ function InputPromptPage({ config, socket, session, currentPlayer, players }) {
                                 enableInput={true}
                                 onSubmitInput={sendPrompt}
                                 disableInput={false}
-                                disableSend={false}
+                                disableSubmit={disablePrompting}
                                 placeholder='Schreibe der KI, wie die Aufgabe gelöst werden soll.'
                                 initialValue={ result != null ? result.prompt : '' }
                                 />

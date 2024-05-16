@@ -126,7 +126,7 @@ a:hover {
 }
 
 /*buttons, inputs, textareas*/
-button, input, .prompt-text-div {
+button, button:disabled, input, input:disabled, .prompt-text-div {
   border-radius: 30px;
   background-color: var(--light-text);
   color: var(--dark-text);
@@ -136,7 +136,7 @@ button, input, .prompt-text-div {
   will-change: box-shadow, border-color, transform, opacity, color, background-color;
   transition: box-shadow 300ms, border-color 200ms, transform 100ms, opacity 300ms, color 300ms, background-color 300ms;
 }
-button:hover/*, input:hover, .prompt-text-div:hover, .prompt-output:hover*/ {
+button:hover {
   box-shadow: 0 2px 2px 2px var(--box-shadow);
   border-color: var(--box-shadow);
   color: var(--light-text);
@@ -150,12 +150,11 @@ button:active, input:focus, .prompt-text-div-focus {
   opacity: 70%;
   outline: none;
 }
-button:disabled, input:disabled, .prompt-text-div:disabled {
+button:disabled, input:disabled, .prompt-text-div:disabled, .prompt-text-div-focus:disabled {
   opacity: 50%;
 }
 textarea {
   resize: none;
-  max-height: 150px;
   overflow-y: auto;
   font-size: 20px;
   padding: 30px;
