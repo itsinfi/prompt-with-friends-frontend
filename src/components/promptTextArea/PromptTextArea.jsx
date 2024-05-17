@@ -88,7 +88,7 @@ function PromptTextArea({ enableInput = false, onSubmitInput = () => { }, disabl
 
 
 
-    return <div className={`prompt-text-div ${promptTextAreaFocused ? 'prompt-text-div-focus' : ''}`}>
+    return <div className={`prompt-text-div ${enableInput ? 'aufgabe' : ''} ${promptTextAreaFocused ? 'prompt-text-div-focus' : ''}`}>
                                     
 
                 {/* Text Area */}
