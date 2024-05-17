@@ -49,7 +49,7 @@ const router = createBrowserRouter(
             child={
               <ConfigLoader
                 child={<SessionConnector
-                  child={<InputPromptPage />}
+                  child={<CreateGamePage />}
                 />}
               />
                     }/>
