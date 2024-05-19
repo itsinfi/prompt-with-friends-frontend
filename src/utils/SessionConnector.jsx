@@ -16,9 +16,10 @@ import { useLoaderData } from 'react-router-dom'
 function SessionConnector({ child, config }) {
 
     
-    
+    //  load session code
     const sessionCode = useLoaderData()
 
+    // client socket
     const [socket, setSocket] = useState(null)
 
     //session data
@@ -49,33 +50,30 @@ function SessionConnector({ child, config }) {
             timeoutIsSet.current = true
         }
 
-        //TODO: change how values are inserted
+        // change how values are inserted
         SocketService.init(config, sessionCode, () => {
 
-            //read socket
+            // read socket
             const _socket = SocketService.socket
 
-            //init props
+
+            // init props
             setSocket(_socket)
+
+            // update session with session object from backend
+            setSession(_socket.session)
+
+            // get current player from players (if not possible do error handling)
+            setCurrentPlayer(_socket.player)
+
+            // get players in session
             setPlayers(_socket.players)
-
-            //TODO: update session with session object from backend
-            setSession({ code: _socket.sessionCode })
-
-            //TODO: get current player from players (if not possible do error handling)
-            setCurrentPlayer({ id: _socket.userID, isHost: _socket.userID === '1' })
 
             //stop timeout timer
             if (timeout.current) {
                 clearTimeout(timeout.current)
             }
         })
-
-        //handle updates for the players
-        SocketService.on('updatePlayers', (data) => {
-            setPlayers(data.players)
-            //TODO: update current player based on this function
-        });
 
         //handle updates in the session
         SocketService.on('updateSession', (data) => {
@@ -86,7 +84,7 @@ function SessionConnector({ child, config }) {
         SocketService.on('error', (err) => {
             console.error(err.message)
             SocketService.disconnect()
-            sessionStorage.removeItem('userID')
+            sessionStorage.removeItem('playerNumber')
             sessionStorage.removeItem('sessionCode')
             setError(new Error(err.message))
         })
@@ -98,8 +96,27 @@ function SessionConnector({ child, config }) {
         
     }, [config, sessionCode])
 
-    
 
+    useEffect(() => {
+        //handle updates for the players
+        SocketService.on('updatePlayers', ({ players }) => {
+
+            if (!currentPlayer) {
+                return
+            }
+
+
+            setPlayers(players)
+            
+            const _currentPlayer = players.find(p => p.playerNumber.toString() === currentPlayer.playerNumber.toString())
+            
+            if (_currentPlayer && _currentPlayer !== undefined) {
+                setCurrentPlayer(_currentPlayer)
+            }
+        });
+    }, [currentPlayer])
+
+    
 
     //check if there is an error
     if (error) {
@@ -108,7 +125,7 @@ function SessionConnector({ child, config }) {
 
 
     //check if socket connection has been established + players are loaded
-    if (!socket && !players) {
+    if (!socket || !players) {
         return <LoadingSpinner />
     }
 

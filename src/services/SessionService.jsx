@@ -5,13 +5,18 @@ class SessionService {
 
     /**
      * creates a new session
-     * TODO: use session api
      * 
-     * @returns code of new session
+     * @returns sesssion as response
      */
-    static async createSession() {
-        await new Promise(resolve => setTimeout(resolve, 3000));//wait 3 seconds //TODO: remove when connecting
-        return 1
+    static async createSession(config) {
+
+        return await fetch(`${config.be_host}/session/create`, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+        });
     }
 
 }

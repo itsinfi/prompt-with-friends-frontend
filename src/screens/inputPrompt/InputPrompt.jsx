@@ -51,7 +51,7 @@ function InputPromptPage({ config, socket, session, currentPlayer, players }) {
 
 
         // Send text prompt and provide callback function
-        PromptingService.sendTextPrompt(prompt, currentPlayer.id, session.code, (timestamp, result) => {
+        PromptingService.sendTextPrompt(prompt, currentPlayer.playerNumber, session.sessionCode, (timestamp, result) => {
 
             //if successful, save result model and show success snack bar
             try {

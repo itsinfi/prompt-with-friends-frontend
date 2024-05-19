@@ -48,7 +48,7 @@ function CreateGamePage({ config, socket, session, currentPlayer, players }) {
     return (
         <>
             {   //check if socket connection has been established + players are loaded
-                !socket && !players ? <LoadingSpinner />
+                !socket || !players ? <LoadingSpinner />
                 
                     : (
             
@@ -56,9 +56,9 @@ function CreateGamePage({ config, socket, session, currentPlayer, players }) {
                         {/* Player Avatars */}
                         <Card>
                             <div className='flex-row'>
-                                {//TODO: use player model && override isHost
-                                    players.map(playerID => (
-                                        <PlayerAvatar key={playerID} player={{ id: playerID, isHost: playerID === '1' }} currentPlayerID={currentPlayer.id}/>
+                                {   
+                                    players.map(player => (
+                                        <PlayerAvatar key={player.playerNumber} player={player} currentPlayerNumber={currentPlayer.playerNumber}/>
                                     ))
                                 }
                             </div>
@@ -70,7 +70,7 @@ function CreateGamePage({ config, socket, session, currentPlayer, players }) {
                                 Lade deine Freunde ein!
                             </h2>
                             <div className='invite-link-input'>
-                                <input id='invite-link-input' type='text' placeholder='loading...' value={`play.${config.name}.com/${session.code}`} readOnly onClick={(event) => event.target.select()}/>
+                                <input id='invite-link-input' type='text' placeholder='loading...' value={`play.${config.name}.com/${session.sessionCode}`} readOnly onClick={(event) => event.target.select()}/>
                             </div>
                             <div className='invite-link-button'>
                                 <button onClick={copyInviteLink}>

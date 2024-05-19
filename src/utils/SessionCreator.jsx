@@ -21,15 +21,19 @@ function SessionCreator({ config }) {
     //init socket.io and check vor joining/leaving players
     useEffect(() => {
 
+        //send post request to create new session and return json response
         async function getNewSession() {
-            const sessionCode = await SessionService.createSession()
-            return sessionCode
+            return (await SessionService.createSession(config)).json().then(json => { return json})
         }
         
-        getNewSession().then(sessionCode => {
-            setSession(sessionCode)
+        //create sesssion and then set session storage values and set the session parameter for the new route to load
+        getNewSession().then(session => {
+            sessionStorage.setItem('playerNumber', session.players[0].playerNumber)
+            sessionStorage.setItem('sessionCode', session.sessionCode)
+            setSession(session.sessionCode)
         }).catch(err => {
-            setError(new Error(err.message))
+            console.error(err)
+            setError(new Error('Session konnte nicht erstellt werden'))
         })
 
         

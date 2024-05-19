@@ -16,8 +16,6 @@ class SocketService {
      * @param {*} config configuration object
      * @param {*} sessionCode code of session to connect to
      * @param {*} onConnection callback function for when backend returns session data response
-     * @param {*} previousUserID user id from session storage (if existing)
-     * @param {*} previousSessionCode session code from session storage (if existing)
      */
     static async init(config, sessionCode, onConnection) {
         
@@ -54,19 +52,19 @@ class SocketService {
      */
     static connectToSession(sessionCode) {
 
-        //check for userID and session code in session storage
-        const previousUserID = sessionStorage.getItem('userID')
+        //check for playerNumber and session code in session storage
+        const previousPlayerNumber = sessionStorage.getItem('playerNumber')
         const previousSessionCode = sessionStorage.getItem('sessionCode')
 
-        //if found + session code is same as session to connect to: use userID to authenticate
-        if ((previousUserID !== undefined || null) && (previousSessionCode !== undefined || null) && (previousSessionCode == sessionCode)) {
-            this.socket.auth = { 'sessionCode': sessionCode, 'userID': previousUserID }
+        //if found + session code is same as session to connect to: use playerNumber to authenticate
+        if ((previousPlayerNumber !== undefined || null) && (previousSessionCode !== undefined || null) && (previousSessionCode == sessionCode)) {
+            this.socket.auth = { 'sessionCode': sessionCode, 'playerNumber': previousPlayerNumber }
 
         //else make sure to disconnect from current session
         } else {
             this.disconnect()
-            sessionStorage.removeItem('userID')
-            this.socket.auth = { 'sessionCode': sessionCode }
+            sessionStorage.removeItem('playerNumber')
+            sessionStorage.setItem('sessionCode', sessionCode)
         }
         
         //connect to server side socket
@@ -80,18 +78,19 @@ class SocketService {
      */
     static handleSessionData(onConnection) {
 
-        this.socket.on("session", ({ sessionCode, userID, players }) => {
+        this.socket.on("connectionFeedback", ({ session, player, players }) => {
 
-            // attach the session code and userid to the next reconnection attempts
-            this.socket.auth = { sessionCode: sessionCode, userID: userID };
+            // attach the session code and playerNumber to the next reconnection attempts
+            this.socket.auth = { sessionCode: session.sessionCode, playerNumber: player.playerNumber };
 
             //store them as socket attributes as well
-            this.socket.sessionCode = sessionCode
-            this.socket.userID = userID;
+            this.socket.session = session
+            this.socket.player = player;
+            this.socket.players = players;
 
             // save them in session storage for later reconnection attempts as well
-            sessionStorage.setItem("userID", userID);
-            sessionStorage.setItem("sessionCode", sessionCode);
+            sessionStorage.setItem("playerNumber", player.playerNumber);
+            sessionStorage.setItem("sessionCode", session.sessionCode);
 
             //save players
             this.socket.players = players

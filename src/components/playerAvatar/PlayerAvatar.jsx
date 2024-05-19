@@ -13,9 +13,9 @@ import getPlayerAvatarColor from '../../utils/playerAvatarColors'
  * @param name name of player 
  * @returns visualization of a player
  */
-const PlayerAvatar = ({ player, currentPlayerID }) => {
+const PlayerAvatar = ({ player, currentPlayerNumber }) => {
 
-    const playerColor = getPlayerAvatarColor(player.id)
+    const playerColor = getPlayerAvatarColor(player.playerNumber)
     
     return  (
         <div title={ player.isHost ? 'Admin' : '' } className='flex-column playerAvatar'>
@@ -28,7 +28,7 @@ const PlayerAvatar = ({ player, currentPlayerID }) => {
             
                 
             <h3 className='playerName'>
-                {`Spieler ${player.id}${player.id === currentPlayerID.toString() ? ' (Du)' : ''}`}  
+                {`Spieler ${player.playerNumber}${player.playerNumber === currentPlayerNumber.toString() ? ' (Du)' : ''}`}  
             </h3>
         </div>
             )
@@ -36,7 +36,7 @@ const PlayerAvatar = ({ player, currentPlayerID }) => {
 
 PlayerAvatar.propTypes = {
     player: PropTypes.object.isRequired,
-    currentPlayerID: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    currentPlayerNumber: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
 }
 
 

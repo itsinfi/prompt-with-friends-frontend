@@ -65,7 +65,6 @@ function PromptTextArea({ enableInput = false, onSubmitInput = () => { }, disabl
             event.preventDefault()
 
             if (disableSubmit) {
-                console.log('disable submit')
                 disableSubmitError()
                 return
             }
