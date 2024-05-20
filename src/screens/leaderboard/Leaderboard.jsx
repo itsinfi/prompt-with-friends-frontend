@@ -1,4 +1,4 @@
-import './Voting.css'
+import './Leaderboard.css'
 import { Outlet } from 'react-router-dom'
 import Card from '../../components/card/Card'
 import { useState } from 'react'
@@ -21,24 +21,14 @@ import RoundResult from '../../components/roundResult/RoundResult'
  * @param players Array of all players in the session
  * @returns 
  */
-function VotingPage({ config, socket, session, currentPlayer, players }) {
+function LeaderboardPage({ config, socket, session, currentPlayer, players }) {
 
     // Result Model
     // const [result, setResult] = useState(null)
     const result = { prompt: 'Erstelle einen Brief für deinen Vorgesetzen, welcher 300 Wörter lang ist.', result: 'Erstelle einen Brief für deinen Vorgesetzen, welcher 300 Wörter lang ist.' }
 
     // Round Model
-    const round = { time: '7', task: 'Erstelle einen Brief für deinen Vorgesetzen, welcher 300 Wörter lang ist.' }
-
-    // playerNumber that is selected for vote
-    const [selectedNumber, setSelectedNumber] = useState(null)
-
-
-    // change vote
-    const onVote = (player) => {
-        setSelectedNumber(player.playerNumber)
-    }
-
+    const round = { time: '63', task: 'Erstelle einen Brief für deinen Vorgesetzen, welcher 300 Wörter lang ist.' }
 
 
     return (
@@ -54,9 +44,9 @@ function VotingPage({ config, socket, session, currentPlayer, players }) {
                                 
                             {/*Game progress*/}
                             <div className='flex-row jc-around'>
-                                <h1>Voting</h1>
+                                <h1>Ergebnisse</h1>
                                     
-                                <Timer seconds={round.time} label='bis zu den Ergebnissen'/>   
+                                <Timer seconds={round.time} label='bis zur nächsten Runde'/>   
                             </div>
 
                             {/*Task description*/}
@@ -64,22 +54,21 @@ function VotingPage({ config, socket, session, currentPlayer, players }) {
                                 
 
                         </Card>
-                            {/*Results*/}
-                            <div className='grid-container'>
+                            {/*Results with score*/}
                                     
                                 {
                                     players.map(player => (
                                         <RoundResult
-                                            key={player.playerNumber}
-                                            player={player}
-                                            result={result}
-                                            onVote={(player) => { onVote(player) }}
-                                            isSelected={selectedNumber != null && player.playerNumber === selectedNumber} 
+                                            key={ player.playerNumber }
+                                            player={ player }
+                                            result={ result }
+                                            disableMargin={ false }
+                                            isSelected={ false } 
+                                            showScore={ true }
+                                            currentPlayerNumber={ currentPlayer.playerNumber }
                                         />
                                     ))
                                 }
-
-                            </div>
                     </>
                 
                 ) 
@@ -94,7 +83,7 @@ function VotingPage({ config, socket, session, currentPlayer, players }) {
 
 }
 
-VotingPage.propTypes = {
+LeaderboardPage.propTypes = {
     config: PropTypes.object,
     socket: PropTypes.object,
     session: PropTypes.object,
@@ -102,4 +91,4 @@ VotingPage.propTypes = {
     players: PropTypes.array
 }
 
-export default VotingPage
+export default LeaderboardPage

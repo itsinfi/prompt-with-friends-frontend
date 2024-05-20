@@ -6,7 +6,7 @@ import formatTimer from '../../utils/formatTimer'
 /**
  * A component that displays a time remaining (only displaying, timer logic needs to be implemented else where)
  * 
- * @param seconds seconds to display 
+ * @param seconds seconds to display (currently no support for more than 3599 seconds)
  * @param label optional label to say what happens when the timer stops 
  * @returns timer formatted to mm:ss
  */

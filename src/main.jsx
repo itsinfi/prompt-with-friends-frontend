@@ -11,6 +11,7 @@ import ErrorMessage from './components/errorMessage/ErrorMessage'
 import SessionCreator from './utils/SessionCreator'
 import InputPromptPage from './screens/inputPrompt/InputPrompt'
 import VotingPage from './screens/voting/Voting'
+import LeaderboardPage from './screens/leaderboard/Leaderboard'
 
 
 /**
@@ -50,7 +51,7 @@ const router = createBrowserRouter(
             child={
               <ConfigLoader
                 child={<SessionConnector
-                  child={<VotingPage />}
+                  child={<LeaderboardPage />}
                 />}
               />
                     }/>

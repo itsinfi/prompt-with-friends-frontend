@@ -10,7 +10,8 @@ import getPlayerAvatarColor from '../../utils/playerAvatarColors'
 /**
  * A component that visualizes a player inside the session
  * 
- * @param name name of player 
+ * @param player player to visualizes
+ * @param currentPlayerNumber number of current player (to show 'you' badge)
  * @returns visualization of a player
  */
 const PlayerAvatar = ({ player, currentPlayerNumber }) => {
