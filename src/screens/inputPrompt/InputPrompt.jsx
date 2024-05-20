@@ -29,7 +29,7 @@ function InputPromptPage({ config, socket, session, currentPlayer, players }) {
     const [result, setResult] = useState(null)
 
     // Round Model
-    const round = { time: '30', task: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.' }
+    const round = { time: '30', task: 'Erstelle einen Brief für deinen Vorgesetzen, welcher 300 Wörter lang ist.' }
 
     // Disable submit for the prompt input form
     const [disablePrompting, setDisablePrompting] = useState(false)
@@ -83,33 +83,37 @@ function InputPromptPage({ config, socket, session, currentPlayer, players }) {
                     : (
             
                     <>
-                        {/*Task description*/}
+                        {/*Game progress*/}
                         
                         <Card >
                             <Timer seconds={round.time} />  
                         </Card>
-                            
-
-                        {/*Game progress*/}
                         
                             
 
-                        {/*Prompt input form*/}
                         <Card>
-                                
-                            <h2 className='aufgabe2' style={{ fontSize: '50px', margin: '40px 20px' }}>Erstelle einen Brief für deinen Vorgesetzen, welcher 300 Wörter lang ist.</h2>   
 
-                            <div style={{ margin: '60px 0' }} />    
-                                
+                            {/*Task description*/}
+                                <TaskDescription description={ round.task } />
 
                             
                                 
+                            <div className='mv-60' />    
+                                
+
+                                
+                            {/*Result preview*/}
                             <PromptTextArea
                                 placeholder='Hier wird das von der KI generierte Ergebnis angezeigt.'
                                     initialValue={result != null ? result.result : ''} />
-                                
-                            <div style={{margin: '60px 0'}}/>
                             
+
+                            
+                            <div className='mv-60' />    
+                            
+                                
+                            
+                            {/*Prompt input form*/}
                             <PromptTextArea
                                 enableInput={true}
                                 onSubmitInput={sendPrompt}

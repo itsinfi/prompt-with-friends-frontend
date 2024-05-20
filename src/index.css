@@ -242,3 +242,60 @@ footer {
   text-align: center;
   z-index: 0;
 }
+
+/*margins and paddings*/
+.m-20 {
+  margin: 20px;
+}
+.m-40 {
+  margin: 40px;
+}
+.m-60 {
+  margin: 60px;
+}
+.mh-20 {
+  margin: 0 20px;
+}
+.mh-40 {
+  margin: 0 40px;
+}
+.mh-60 {
+  margin: 0 60px;
+}
+.mv-20 {
+  margin: 20px 0;
+}
+.mv-40 {
+  margin: 40px 0;
+}
+.mv-60 {
+  margin: 60px 0;
+}
+
+.p-20 {
+  padding: 20px;
+}
+.p-40 {
+  padding: 40px;
+}
+.p-60 {
+  padding: 60px;
+}
+.ph-20 {
+  padding: 0 20px;
+}
+.ph-40 {
+  padding: 0 40px;
+}
+.ph-60 {
+  padding: 0 60px;
+}
+.pv-20 {
+  padding: 20px 0;
+}
+.pv-40 {
+  padding: 40px 0;
+}
+.pv-60 {
+  padding: 60px 0;
+}

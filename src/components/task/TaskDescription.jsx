@@ -10,13 +10,10 @@ import './TaskDescription.css'
  */
 const TaskDescription = ({ description = '' }) => {
     
-    return  <div className='task'>
-
-                <p>
-                    { description }
-                </p>
-
-            </div>
+    return <h2
+                className='task'>
+                { description }
+            </h2>  
 
 }
 
