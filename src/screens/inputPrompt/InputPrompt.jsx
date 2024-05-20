@@ -86,7 +86,7 @@ function InputPromptPage({ config, socket, session, currentPlayer, players }) {
                         {/*Game progress*/}
                         
                         <Card >
-                            <Timer seconds={round.time} />  
+                            <Timer seconds={round.time} label='bis zum Voting'/>  
                         </Card>
                         
                             
@@ -94,7 +94,7 @@ function InputPromptPage({ config, socket, session, currentPlayer, players }) {
                         <Card>
 
                             {/*Task description*/}
-                                <TaskDescription description={ round.task } />
+                                <TaskDescription description={ round.task }/>
 
                             
                                 
@@ -105,7 +105,8 @@ function InputPromptPage({ config, socket, session, currentPlayer, players }) {
                             {/*Result preview*/}
                             <PromptTextArea
                                 placeholder='Hier wird das von der KI generierte Ergebnis angezeigt.'
-                                    initialValue={result != null ? result.result : ''} />
+                                initialValue={result != null ? result.result : ''}
+                            />
                             
 
                             

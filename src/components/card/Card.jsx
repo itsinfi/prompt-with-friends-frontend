@@ -7,16 +7,21 @@ import './Card.css'
  * @param children children to display on top of the card
  * @returns Card with its children
  */
-const Card = ({ children }) => {
+const Card = ({ children, disableMargin = false, isSelected = false }) => {
+
+    console.log(`isSelected card: ${isSelected}`)
+
     return  (
-                <div className="card">
+                <div className={`${isSelected ? 'card-selected' : ''} card ${disableMargin ? '' : 'm-40'}`}>
                     { children }
                 </div>
             )
 }
 
 Card.propTypes = {
-    children: PropTypes.node.isRequired
+    children: PropTypes.node.isRequired,
+    disableMargin: PropTypes.bool,
+    isSelected: PropTypes.bool
 }
 
 export default Card

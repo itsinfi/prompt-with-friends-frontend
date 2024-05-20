@@ -56,8 +56,10 @@
   /*Colors:*/
   --primary: #bc14ff;
   --primary-opacity: #bc14ff50;
-  --secondary: #10ff90;
-  --secondary-opacity: #10ff9050;
+  --secondary: #ff7b00;
+  --secondary-opacity: #ff7b0050;
+  --tertiary: #10ff90;
+  --tertiary-opacity: #10ff9050;
   --light-text: #eee;
   --dark-text: #444;
   --box-shadow: #00000040;
@@ -127,7 +129,7 @@ a:hover {
 
 /*buttons, inputs, textareas*/
 button, button:disabled, input, input:disabled, .prompt-text-div {
-  border-radius: 30px;
+  border-radius: 40px;
   background-color: var(--light-text);
   color: var(--dark-text);
   font-size: 20px;
@@ -174,33 +176,33 @@ html::-webkit-scrollbar, textarea::-webkit-scrollbar {
   margin-right: 10px;
 }
 html::-webkit-scrollbar-track, textarea::-webkit-scrollbar-track {
-  border-radius: 30px;
+  border-radius: 40px;
   background-color: transparent;
 }
 html::-webkit-scrollbar-corner, textarea::-webkit-scrollbar-corner {
   background-color: transparent;
 }
 html::-webkit-scrollbar-thumb {
-  background-color: var(--secondary-opacity);
-  border-radius: 30px;
+  background-color: var(--tertiary-opacity);
+  border-radius: 40px;
   will-change: background-color !important;
   transition: background-color 500ms !important;
 }
 textarea::-webkit-scrollbar-thumb {
   background-color: var(--box-shadow);
-  border-radius: 30px;
+  border-radius: 40px;
   will-change: background-color !important;
   transition: background-color 500ms !important;
 }
 html::-webkit-scrollbar-thumb:hover {
-  background-color: var(--secondary);
+  background-color: var(--tertiary);
 }
 textarea::-webkit-scrollbar-thumb:hover {
   background-color: var(--dark-text);
 }
 
 
-/*rows and columns*/
+/*rows, columns and grids*/
 .flex-row {
   display: flex;
   flex-direction: row;
@@ -213,6 +215,14 @@ textarea::-webkit-scrollbar-thumb:hover {
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
+
+.grid-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 40px;
+  margin: 40px;
+}
+
 
 /*center styles*/
 .center-screen {
@@ -298,4 +308,29 @@ footer {
 }
 .pv-60 {
   padding: 60px 0;
+}
+
+/*text-alignments*/
+.t-align-c {
+  text-align: center;
+}
+.t-align-l {
+  text-align: left;
+}
+.t-align-r {
+  text-align: right;
+}
+.t-align-j {
+  text-align: justify;
+}
+
+/*justify-content*/
+.jc-evenly{
+  justify-content: space-evenly;
+}
+.jc-between{
+  justify-content: space-between;
+}
+.jc-around{
+  justify-content: space-around;
 }

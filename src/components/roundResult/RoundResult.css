@@ -1,0 +1,4 @@
+.selected-vote {
+    background-color: var(--tertiary-opacity);
+    border-radius: 50px;
+}

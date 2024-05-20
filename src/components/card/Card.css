@@ -1,9 +1,9 @@
 .card {
     background-color: var(--card-color);
-    border-radius: 30px;
+    border-radius: 40px;
     padding: 15px;
-    margin: 30px;
     border: 5px solid var(--border-color);
+    will-change: background-color, box-shadow;
     transition: background-color 500ms, box-shadow 500ms;
 }
 
@@ -14,4 +14,8 @@
 
 .card-title {
     padding-bottom: 10px;
+}
+
+.card-selected {
+    border-color: var(--success);
 }

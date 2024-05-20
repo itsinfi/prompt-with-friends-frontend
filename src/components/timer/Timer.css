@@ -5,3 +5,11 @@
 .red-timer {
     color: var(--error)
 }
+
+.timer {
+    margin-bottom: 0
+}
+
+.timer-label {
+    margin-top: 0;
+}

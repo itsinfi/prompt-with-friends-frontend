@@ -7,8 +7,8 @@
 }
 
 .prompt-input, .prompt-output {
-    background-color: var(--dark-text);
-    color: var(--light-text);
+    background-color: var(--light-text);
+    color: var(--dark-text);
     width: 100%;
     background-color: transparent;
     border: none;
@@ -19,7 +19,6 @@
 }
 
 .prompt-output {
-    min-height: 200px;
     max-height: none;
 }
 
