@@ -334,6 +334,15 @@ footer {
 .jc-around{
   justify-content: space-around;
 }
+.jc-start{
+  justify-content: start;
+}
+.jc-center{
+  justify-content: center;
+}
+.jc-end{
+  justify-content: end;
+}
 
 
 /*align-items*/

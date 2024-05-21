@@ -18,8 +18,19 @@ function Score({ player, currentPlayerNumber }) {
     return  <div style={{backgroundColor: playerColor}} className={'score'}>
                 <div className='score-lighten p-20 flex-row jc-between ai-center'>
 
+
+                    {/* TODO: change to position */}
+                    <h1 style={{fontSize: '128px', margin: 0}}>{ player.playerNumber }.</h1>
+
                     {/* Score */}
-                    <p>{player.playerNumber}. Platz: Spieler{player.playerNumber} - {player.score} Punkte</p>
+                    <div className='flex-column ai-center'>
+
+                        {/* TODO: change to position */}
+                        <h1 style={{margin: 0}}>+{player.score} Punkte</h1>
+
+                        <p style={{margin: 0}}>insgesamt: {player.score} Punkte</p>
+
+                    </div>
 
                     {/* Player Avatar */}
                     <div><PlayerAvatar player={ player } currentPlayerNumber={ currentPlayerNumber }/></div>

@@ -51,7 +51,7 @@ const router = createBrowserRouter(
             child={
               <ConfigLoader
                 child={<SessionConnector
-                  child={<LeaderboardPage />}
+                  child={<VotingPage />}
                 />}
               />
                     }/>
