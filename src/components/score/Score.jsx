@@ -16,7 +16,7 @@ function Score({ player, currentPlayerNumber }) {
     const playerColor = getPlayerAvatarColor(player.playerNumber)
 
     return  <div style={{backgroundColor: playerColor}} className={'score'}>
-                <div className='score-lighten p-20 flex-row jc-between ai-center'>
+                <div className='score-lighten ph-40 flex-row jc-between ai-center'>
 
 
                     {/* TODO: change to position */}

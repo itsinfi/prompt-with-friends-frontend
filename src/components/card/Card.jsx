@@ -11,8 +11,6 @@ import './Card.css'
  */
 const Card = ({ children, disableMargin = false, isSelected = false }) => {
 
-    console.log(`isSelected card: ${isSelected}`)
-
     return  (
                 <div className={`${isSelected ? 'card-selected' : ''} card ${disableMargin ? '' : 'm-40'}`}>
                     { children }

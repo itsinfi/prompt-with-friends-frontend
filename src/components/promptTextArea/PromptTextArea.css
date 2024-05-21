@@ -35,7 +35,3 @@
     background-color: var(--primary-opacity);
     color: var(--light-text);
 }
-
-.prompt-highlighted {
-    box-shadow: 0 0 10px var(--primary);
-}

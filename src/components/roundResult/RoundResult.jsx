@@ -35,6 +35,7 @@ function RoundResult({ result, player, onVote = null, disableMargin = true, isSe
                     <PromptTextArea
                         placeholder=''
                         initialValue={result != null ? result.prompt : ''}
+                        overrideHeight='100px'
                     />
 
 
@@ -46,7 +47,8 @@ function RoundResult({ result, player, onVote = null, disableMargin = true, isSe
                     <PromptTextArea
                         placeholder=''
                         initialValue={result != null ? result.result : ''}
-                        isHighlighted= { true }
+                        highlightColor='var(--secondary)'
+                        overrideHeight='400px'
                     />
 
 

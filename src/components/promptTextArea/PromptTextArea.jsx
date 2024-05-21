@@ -15,9 +15,10 @@ import { ErrorSnackBar } from '../../components/snackBar/SnackBar'
  * @param disableSubmit html disable attribute for the submit button (only relevant for input field)
  * @param placeholder placeholder to show if value of text area is empty
  * @param initialValue value to display in initial state of the text area
+ * @param  highlightColor used to display an highlight drop shadow behind then text area
  * @returns 
  */
-function PromptTextArea({ enableInput = false, onSubmitInput = () => { }, disableInput = false, disableSubmit = false, placeholder = '', initialValue = '', isHighlighted = false}) {
+function PromptTextArea({ enableInput = false, onSubmitInput = () => { }, disableInput = false, disableSubmit = false, placeholder = '', initialValue = '', highlightColor = '', overrideHeight = ''}) {
 
     // update height of prompt text area dynamically when there is a new line added
     const [promptText, setPromptText] = useState(initialValue);
@@ -85,13 +86,14 @@ function PromptTextArea({ enableInput = false, onSubmitInput = () => { }, disabl
     // Error to show if Prompt is empty when submitting
     const promptIsEmptyError = ErrorSnackBar('Bitte das Feld ausfüllen.')
 
+    console.log(highlightColor)
 
 
-    return <div className={`prompt-text-div ${enableInput ? 'aufgabe' : ''} ${isHighlighted ? 'prompt-highlighted' : ''} ${promptTextAreaFocused ? 'prompt-text-div-focus' : ''}`}>
+    return <div style={highlightColor ? {boxShadow: `0 0 10px ${highlightColor}`} : {}} className={`prompt-text-div ${enableInput ? 'aufgabe' : ''} ${promptTextAreaFocused ? 'prompt-text-div-focus' : ''}`}>
                                     
 
                 {/* Text Area */}
-                <textarea className={enableInput ? 'prompt-input' : 'prompt-output'}
+                <textarea style={overrideHeight ? {minHeight: overrideHeight} : {}} className={enableInput ? 'prompt-input' : 'prompt-output'}
                     disabled={disableInput}
                     readOnly={!enableInput}
                     value={enableInput ? promptText : initialValue}
@@ -122,7 +124,8 @@ PromptTextArea.propTypes = {
     disableSubmit: PropTypes.bool,
     placeholder: PropTypes.string,
     initialValue: PropTypes.string,
-    isHighlighted: PropTypes.bool
+    highlightColor: PropTypes.string,
+    overrideHeight: PropTypes.string
 }
 
 
