@@ -46,6 +46,7 @@ function RoundResult({ result, player, onVote = null, disableMargin = true, isSe
                     <PromptTextArea
                         placeholder=''
                         initialValue={result != null ? result.result : ''}
+                        isHighlighted= { true }
                     />
 
 

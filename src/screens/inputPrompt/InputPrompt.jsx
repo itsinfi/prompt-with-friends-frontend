@@ -121,7 +121,8 @@ function InputPromptPage({ config, socket, session, currentPlayer, players }) {
                                 disableInput={false}
                                 disableSubmit={disablePrompting}
                                 placeholder='Schreibe der KI, wie die Aufgabe gelöst werden soll.'
-                                initialValue={ result != null ? result.prompt : '' }
+                                initialValue={result != null ? result.prompt : ''}
+                                isHighlighted={ true }
                                 />
                             
                         </Card>

@@ -13,10 +13,13 @@ import SessionService from '../services/SessionService'
  */
 function SessionCreator({ config }) {
 
+    // session after it has been created
     const [session, setSession] = useState(null)
 
+    // catch possible errors that might occur when creating session
     const [error, setError] = useState(null)
 
+    // only allow one session creation at a time
     const inProgress = useRef(false)
 
 

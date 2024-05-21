@@ -64,7 +64,7 @@ function LeaderboardPage({ config, socket, session, currentPlayer, players }) {
                                             disableMargin={ false }
                                             isSelected={ false } 
                                             showScore={ true }
-                                            currentPlayerNumber={ currentPlayer.playerNumber }
+                                            currentPlayerNumber={currentPlayer.playerNumber}
                                         />
                                     ))
                                 }

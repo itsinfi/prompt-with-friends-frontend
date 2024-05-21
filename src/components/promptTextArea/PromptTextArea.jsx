@@ -17,7 +17,7 @@ import { ErrorSnackBar } from '../../components/snackBar/SnackBar'
  * @param initialValue value to display in initial state of the text area
  * @returns 
  */
-function PromptTextArea({ enableInput = false, onSubmitInput = () => { }, disableInput = false, disableSubmit = false, placeholder = '', initialValue = ''}) {
+function PromptTextArea({ enableInput = false, onSubmitInput = () => { }, disableInput = false, disableSubmit = false, placeholder = '', initialValue = '', isHighlighted = false}) {
 
     // update height of prompt text area dynamically when there is a new line added
     const [promptText, setPromptText] = useState(initialValue);
@@ -87,7 +87,7 @@ function PromptTextArea({ enableInput = false, onSubmitInput = () => { }, disabl
 
 
 
-    return <div className={`prompt-text-div ${enableInput ? 'aufgabe' : ''} ${promptTextAreaFocused ? 'prompt-text-div-focus' : ''}`}>
+    return <div className={`prompt-text-div ${enableInput ? 'aufgabe' : ''} ${isHighlighted ? 'prompt-highlighted' : ''} ${promptTextAreaFocused ? 'prompt-text-div-focus' : ''}`}>
                                     
 
                 {/* Text Area */}
@@ -121,7 +121,8 @@ PromptTextArea.propTypes = {
     disableInput: PropTypes.bool,
     disableSubmit: PropTypes.bool,
     placeholder: PropTypes.string,
-    initialValue: PropTypes.string
+    initialValue: PropTypes.string,
+    isHighlighted: PropTypes.bool
 }
 
 
