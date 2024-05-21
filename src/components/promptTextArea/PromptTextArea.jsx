@@ -15,7 +15,8 @@ import { ErrorSnackBar } from '../../components/snackBar/SnackBar'
  * @param disableSubmit html disable attribute for the submit button (only relevant for input field)
  * @param placeholder placeholder to show if value of text area is empty
  * @param initialValue value to display in initial state of the text area
- * @param  highlightColor used to display an highlight drop shadow behind then text area
+ * @param highlightColor used to display an highlight drop shadow behind then text area
+ * @param overrideHeight used to dynamically adjust the minHeight
  * @returns 
  */
 function PromptTextArea({ enableInput = false, onSubmitInput = () => { }, disableInput = false, disableSubmit = false, placeholder = '', initialValue = '', highlightColor = '', overrideHeight = ''}) {
