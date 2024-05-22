@@ -21,14 +21,11 @@ import RoundResult from '../../../components/roundResult/RoundResult'
  * @param players Array of all players in the session
  * @returns 
  */
-function VotingPage({ config, socket, session, currentPlayer, players }) {
+function VotingPage({ socket, players, round }) {
 
     // Result Model
     // const [result, setResult] = useState(null)
     const result = { prompt: 'Erstelle einen Brief für deinen Vorgesetzen, welcher 300 Wörter lang ist.', result: 'Erstelle einen Brief für deinen Vorgesetzen, welcher 300 Wörter lang ist.' }
-
-    // Round Model
-    const round = { time: '7', task: 'Erstelle einen Brief für deinen Vorgesetzen, welcher 300 Wörter lang ist.' }
 
     // playerNumber that is selected for vote
     const [selectedNumber, setSelectedNumber] = useState(null)
@@ -95,11 +92,9 @@ function VotingPage({ config, socket, session, currentPlayer, players }) {
 }
 
 VotingPage.propTypes = {
-    config: PropTypes.object,
     socket: PropTypes.object,
-    session: PropTypes.object,
-    currentPlayer: PropTypes.object,
-    players: PropTypes.array
+    players: PropTypes.array,
+    round: PropTypes.object
 }
 
 export default VotingPage

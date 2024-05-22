@@ -23,13 +23,10 @@ import PromptingService from '../../../services/PromptingService'
  * @param players Array of all players in the session
  * @returns 
  */
-function InputPromptPage({ config, socket, session, currentPlayer, players }) {
+function InputPromptPage({ socket, session, currentPlayer, players, round }) {
 
     // Result Model
     const [result, setResult] = useState(null)
-
-    // Round Model
-    const round = { time: '30', task: 'Erstelle einen Brief für deinen Vorgesetzen, welcher 300 Wörter lang ist.' }
 
     // Disable submit for the prompt input form
     const [disablePrompting, setDisablePrompting] = useState(false)
@@ -141,11 +138,11 @@ function InputPromptPage({ config, socket, session, currentPlayer, players }) {
 }
 
 InputPromptPage.propTypes = {
-    config: PropTypes.object,
     socket: PropTypes.object,
     session: PropTypes.object,
     currentPlayer: PropTypes.object,
-    players: PropTypes.array
+    players: PropTypes.array,
+    round: PropTypes.object
 }
 
 export default InputPromptPage
