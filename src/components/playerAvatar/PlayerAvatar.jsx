@@ -21,15 +21,15 @@ const PlayerAvatar = ({ player, currentPlayerNumber }) => {
     return  (
         <div title={ player.isHost ? 'Admin' : '' } className='flex-column playerAvatar'>
             
-
-            <FontAwesomeIcon style={{ color: player.isHost ? 'var(--warning)' : 'transparent' }} className='adminIcon' icon={faCrown} size='2x' />
+            {/* //TODO: update to player on position 1 */}
+            <FontAwesomeIcon style={{ color: player.playerNumber == 1 ? 'var(--warning)' : 'transparent' }} className='adminIcon' icon={faCrown} size='2x' />
             
 
             <FontAwesomeIcon style={{ color: playerColor }} className='playerIcon' icon={faUser} size='7x' />
             
                 
             <h3 className='playerName'>
-                {`Spieler ${player.playerNumber}${player.playerNumber === currentPlayerNumber.toString() ? ' (Du)' : ''}`}  
+                {`Spieler ${player.playerNumber}${player.isHost ? ' (Host)' : ''} ${player.playerNumber.toString() === currentPlayerNumber.toString() ? ' (Du)' : ''}`}  
             </h3>
         </div>
             )
