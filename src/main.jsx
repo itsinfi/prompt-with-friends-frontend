@@ -3,15 +3,13 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import HomePage from './screens/home/Home'
-import CreateGamePage from './screens/createGame/CreateGame'
+import CreateGamePage from './screens/game/createGame/CreateGame'
+import GamePage from './screens/game/Game'
 import SessionConnector from './utils/SessionConnector'
 import ConfigLoader from './utils/ConfigLoader'
 import ParticlesWrapper from './components/particles/ParticlesWrapper'
 import ErrorMessage from './components/errorMessage/ErrorMessage'
 import SessionCreator from './utils/SessionCreator'
-import InputPromptPage from './screens/inputPrompt/InputPrompt'
-import VotingPage from './screens/voting/Voting'
-import LeaderboardPage from './screens/leaderboard/Leaderboard'
 
 
 /**
@@ -46,16 +44,7 @@ const router = createBrowserRouter(
     },
     {
       path: "/:session",
-      element: <ErrorMessage>
-          <ParticlesWrapper
-            child={
-              <ConfigLoader
-                child={<SessionConnector
-                  child={<LeaderboardPage />}
-                />}
-              />
-                    }/>
-      </ErrorMessage> ,
+      element: <GamePage/>,
       loader: ({ params }) => {
         return params.session
       },

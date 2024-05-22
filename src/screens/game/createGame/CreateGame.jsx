@@ -1,12 +1,12 @@
 import './CreateGame.css'
 import { Outlet } from 'react-router-dom'
-import Card from '../../components/card/Card'
-import PlayerAvatar from '../../components/playerAvatar/PlayerAvatar'
+import Card from '../../../components/card/Card'
+import PlayerAvatar from '../../../components/playerAvatar/PlayerAvatar'
 import { useEffect, useState } from 'react'
 import { ToastContainer } from 'react-toastify'
-import { SuccessSnackBar } from '../../components/snackBar/SnackBar'
+import { SuccessSnackBar } from '../../../components/snackBar/SnackBar'
 import PropTypes from 'prop-types'
-import LoadingSpinner from '../../components/loadingSpinner/LoadingSpinner'
+import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner'
 
 
 

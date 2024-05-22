@@ -1,12 +1,12 @@
 import './Leaderboard.css'
 import { Outlet } from 'react-router-dom'
-import Card from '../../components/card/Card'
+import Card from '../../../components/card/Card'
 import { ToastContainer } from 'react-toastify'
 import PropTypes from 'prop-types'
-import LoadingSpinner from '../../components/loadingSpinner/LoadingSpinner'
-import TaskDescription from '../../components/task/TaskDescription'
-import Timer from '../../components/timer/Timer'
-import RoundResult from '../../components/roundResult/RoundResult'
+import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner'
+import TaskDescription from '../../../components/task/TaskDescription'
+import Timer from '../../../components/timer/Timer'
+import RoundResult from '../../../components/roundResult/RoundResult'
 
 
 

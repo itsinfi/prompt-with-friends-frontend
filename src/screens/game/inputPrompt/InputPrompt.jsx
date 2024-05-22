@@ -1,15 +1,15 @@
 import './InputPrompt.css'
 import { Outlet } from 'react-router-dom'
-import Card from '../../components/card/Card'
+import Card from '../../../components/card/Card'
 import { useState } from 'react'
 import { ToastContainer } from 'react-toastify'
-import { ErrorSnackBar, InfoSnackBar, SuccessSnackBar } from '../../components/snackBar/SnackBar'
+import { ErrorSnackBar, InfoSnackBar, SuccessSnackBar } from '../../../components/snackBar/SnackBar'
 import PropTypes from 'prop-types'
-import LoadingSpinner from '../../components/loadingSpinner/LoadingSpinner'
-import PromptTextArea from '../../components/promptTextArea/PromptTextArea'
-import TaskDescription from '../../components/task/TaskDescription'
-import Timer from '../../components/timer/Timer'
-import PromptingService from '../../services/PromptingService'
+import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner'
+import PromptTextArea from '../../../components/promptTextArea/PromptTextArea'
+import TaskDescription from '../../../components/task/TaskDescription'
+import Timer from '../../../components/timer/Timer'
+import PromptingService from '../../../services/PromptingService'
 
 
 
