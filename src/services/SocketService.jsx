@@ -63,6 +63,7 @@ class SocketService {
         //else make sure to disconnect from current session
         } else {
             this.disconnect()
+            this.socket.auth = { 'sessionCode': sessionCode }
             sessionStorage.removeItem('playerNumber')
             sessionStorage.setItem('sessionCode', sessionCode)
         }
