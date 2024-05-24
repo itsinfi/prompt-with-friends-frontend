@@ -70,7 +70,7 @@ function CreateGamePage({ config, socket, session, currentPlayer, players }) {
                                 Lade deine Freunde ein!
                             </h2>
                             <div className='invite-link-input'>
-                                <input id='invite-link-input' type='text' placeholder='loading...' value={`play.${config.name}.com/${session.sessionCode}`} readOnly onClick={(event) => event.target.select()}/>
+                                <input id='invite-link-input' type='text' placeholder='loading...' value={`https://play.${config.name}.com/${session.sessionCode}`} readOnly onClick={(event) => event.target.select()}/>
                             </div>
                             <div className='invite-link-button'>
                                 <button onClick={copyInviteLink}>

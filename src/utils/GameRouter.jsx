@@ -20,7 +20,7 @@ function GameRouter({ config, socket, session, currentPlayer, players }) {
 
     // current game state
     // change this value if you want to see a different page
-    const [gameState, setGameState] = useState(0)
+    const [gameState, setGameState] = useState(-1)
 
     // Round Model
     const round = { time: '30', task: 'Erstelle einen Brief für deinen Vorgesetzen, welcher 300 Wörter lang ist.' }
@@ -31,13 +31,13 @@ function GameRouter({ config, socket, session, currentPlayer, players }) {
     // }, [])
 
     switch (gameState) {
-        case 0:
+        case -1:
             return <CreateGamePage config={config} socket={socket} session={session} currentPlayer={currentPlayer} players={players}/>
-        case 1:
+        case 0:
             return <InputPromptPage config={config} socket={socket} session={session} currentPlayer={currentPlayer} players={players} round={round}/>
-        case 2:
+        case 1:
             return <VotingPage config={config} socket={socket} session={session} currentPlayer={currentPlayer} players={players} round={round}/>
-        case 3:
+        case 2:
             return <LeaderboardPage socket={socket} currentPlayer={currentPlayer} players={players} round={round}/>
         default:
             throw new Error('Die Session konnte nicht richtig ausgelesen werden.')

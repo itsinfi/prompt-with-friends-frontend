@@ -20,7 +20,7 @@ function ConfigLoader({ child }) {
 
         //load config
         async function loadConfig() {
-            const response = await fetch('config.json')
+            const response = await fetch('/config.json')
             const configData = await response.json()
             return configData
         }

@@ -16,11 +16,11 @@ function ParticlesWrapper({ child }) {
     //nice animations from particles.js
     useEffect(() => {
         const particlesScript = document.createElement('script');
-        particlesScript.src = '/src/assets/javascripts/particles.min.js';
+        particlesScript.src = '/assets/javascripts/particles.min.js';
         particlesScript.async = true;
         particlesScript.onload = () => {
             const particleOptionsScript = document.createElement('script');
-            particleOptionsScript.src = '/src/components/particles/particleOptions.js';
+            particleOptionsScript.src = '/assets/javascripts/particleOptions.js';
             particleOptionsScript.async = true;
             document.body.appendChild(particleOptionsScript);
         }

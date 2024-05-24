@@ -1,37 +1,37 @@
 /*Fonts*/
 @font-face {
   font-family: Ubuntu;
-  src: url(src/assets/fonts/ubuntu-font-family-0.80/Ubuntu-M.ttf);
+  src: url(/assets/fonts/ubuntu-font-family-0.80/Ubuntu-M.ttf);
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: Ubuntu;
-  src: url(src/assets/fonts/ubuntu-font-family-0.80/Ubuntu-MI.ttf);
+  src: url(/assets/fonts/ubuntu-font-family-0.80/Ubuntu-MI.ttf);
   font-weight: normal;
   font-style: italic;
 }
 @font-face {
   font-family: Ubuntu;
-  src: url(src/assets/fonts/ubuntu-font-family-0.80/Ubuntu-L.ttf);
+  src: url(/assets/fonts/ubuntu-font-family-0.80/Ubuntu-L.ttf);
   font-weight: lighter;
   font-style: normal;
 }
 @font-face {
   font-family: Ubuntu;
-  src: url(src/assets/fonts/ubuntu-font-family-0.80/Ubuntu-LI.ttf);
+  src: url(/assets/fonts/ubuntu-font-family-0.80/Ubuntu-LI.ttf);
   font-weight: lighter;
   font-style: italic;
 }
 @font-face {
   font-family: Ubuntu;
-  src: url(src/assets/fonts/ubuntu-font-family-0.80/Ubuntu-B.ttf);
+  src: url(/assets/fonts/ubuntu-font-family-0.80/Ubuntu-B.ttf);
   font-weight: bold;
   font-style: normal;
 }
 @font-face {
   font-family: Ubuntu;
-  src: url(src/assets/fonts/ubuntu-font-family-0.80/Ubuntu-BI.ttf);
+  src: url(/assets/fonts/ubuntu-font-family-0.80/Ubuntu-BI.ttf);
   font-weight: bold;
   font-style: italic;
 }
