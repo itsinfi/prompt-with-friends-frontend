@@ -46,6 +46,11 @@ function InputPromptPage({ socket, session, currentPlayer, players, round }) {
         // Disable sending a new prompt
         setDisablePrompting(true)
 
+        if (PromptingService.inProcess) {
+            promptErrorSnackBar()
+            return
+        }
+
 
         // Send text prompt and provide callback function
         PromptingService.sendTextPrompt(prompt, currentPlayer.playerNumber, session.sessionCode, (timestamp, result) => {

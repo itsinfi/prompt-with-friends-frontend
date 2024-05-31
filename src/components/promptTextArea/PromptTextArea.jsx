@@ -87,8 +87,6 @@ function PromptTextArea({ enableInput = false, onSubmitInput = () => { }, disabl
     // Error to show if Prompt is empty when submitting
     const promptIsEmptyError = ErrorSnackBar('Bitte das Feld ausfüllen.')
 
-    console.log(highlightColor)
-
 
     return <div style={highlightColor ? {boxShadow: `0 0 10px ${highlightColor}`} : {}} className={`prompt-text-div ${enableInput ? 'aufgabe' : ''} ${promptTextAreaFocused ? 'prompt-text-div-focus' : ''}`}>
                                     

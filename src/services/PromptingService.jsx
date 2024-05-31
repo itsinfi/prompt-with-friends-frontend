@@ -30,11 +30,11 @@ class PromptingService {
             throw new Error('Bitte warten, die Anfrage wird noch verarbeitet.')
         }
 
-        // Submit prompt to backend
-        SocketService.emit("sendPrompt", {prompt: prompt, creator: playerNumber, session: session})
-
         // Set inProcess to true
         this.inProcess = true
+        
+        // Submit prompt to backend
+        SocketService.emit("sendPrompt", {prompt: prompt, creator: playerNumber, session: session})
 
         // Add an event listener to call once the result has been received
         SocketService.on("sendPrompt", ({timestamp, result}) => {

@@ -20,10 +20,10 @@ function GameRouter({ config, socket, session, currentPlayer, players }) {
 
     // current game state
     // change this value if you want to see a different page
-    const [gameState, setGameState] = useState(-1)
+    const [gameState, setGameState] = useState(0)
 
     // Round Model
-    const round = { time: '30', task: 'Erstelle einen Brief für deinen Vorgesetzen, welcher 300 Wörter lang ist.' }
+    const round = { time: '69', task: 'Erstelle einen Brief für deinen Vorgesetzen, welcher 300 Wörter lang ist.' }
 
     // TODO: update game state dynamically
     // useEffect(() => {
