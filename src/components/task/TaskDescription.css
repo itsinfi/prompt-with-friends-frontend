@@ -2,5 +2,60 @@
     filter: drop-shadow(0 0 10px var(--secondary));
     color: white;
     font-size: 40px;
-    margin: 40px 20px; 
+    margin-left: 20px; 
+    margin-right: 20px; 
+    margin-top: 40px; 
+    margin-bottom: 20px;
+}
+
+.task-row {
+    margin-bottom: -10px;
+    margin-top: 20px;
+} 
+
+.tooltip-text {
+    filter: none;
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+.tooltip .tooltip-text {
+    visibility: hidden;
+    background-color: var(--dark-text);
+    color: var(--light-text);
+    text-align: center;
+    border-radius: 30px;
+    padding: 20px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip-text::after {
+    filter: none;
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    margin-left: -10px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: var(--dark-text) transparent transparent transparent;
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 100%;
 }

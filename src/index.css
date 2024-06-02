@@ -84,6 +84,16 @@ body {
   min-height: 100vh;
 }
 
+/*text selection style*/
+::selection {
+  background-color: var(--primary);
+  color: var(--light-text);
+}
+::-moz-selection {
+  background-color: var(--primary);
+  color: var(--light-text);
+}
+
 
 /*text-related styles*/
 h1, h2, h3, h4, h5, h6, button, p, div, input, textarea {

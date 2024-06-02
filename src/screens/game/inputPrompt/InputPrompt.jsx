@@ -96,7 +96,7 @@ function InputPromptPage({ socket, session, currentPlayer, players, round }) {
                         <Card>
 
                             {/*Task description*/}
-                                <TaskDescription description={ round.task }/>
+                                <TaskDescription description={round.task} tip={round.tip} />
 
                             
                                 

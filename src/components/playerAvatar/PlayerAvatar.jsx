@@ -19,7 +19,7 @@ const PlayerAvatar = ({ player, currentPlayerNumber }) => {
     const playerColor = getPlayerAvatarColor(player.playerNumber)
     
     return  (
-        <div title={ player.isHost ? 'Admin' : '' } className='flex-column playerAvatar'>
+        <div title={ player.isHost ? 'Host' : 'Spieler' } className='flex-column playerAvatar'>
             
             {/* //TODO: update to player on position 1 */}
             <FontAwesomeIcon style={{ color: player.playerNumber == 1 ? 'var(--warning)' : 'transparent' }} className='adminIcon' icon={faCrown} size='2x' />

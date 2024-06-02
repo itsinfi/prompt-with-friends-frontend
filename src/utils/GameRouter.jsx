@@ -23,7 +23,7 @@ function GameRouter({ config, socket, session, currentPlayer, players }) {
     const [gameState, setGameState] = useState(0)
 
     // Round Model
-    const round = { time: '69', task: 'Erstelle einen Brief für deinen Vorgesetzen, welcher 300 Wörter lang ist.' }
+    const round = { time: '69', task: 'Erstelle einen Brief für deinen Vorgesetzen, welcher 300 Wörter lang ist.', tip: 'Meinst du, dass sie die Gedanken genommen haben, die wir gedacht haben, und wollen, dass wir denken, dass die Gedanken, die wir gedacht haben, die Gedanken sind, die wir jetzt denken? Denkst du das?' }
 
     // TODO: update game state dynamically
     // useEffect(() => {
