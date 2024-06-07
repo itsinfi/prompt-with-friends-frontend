@@ -4,6 +4,7 @@ import CreateGamePage from '../screens/game/createGame/CreateGame'
 import InputPromptPage from '../screens/game/inputPrompt/InputPrompt'
 import VotingPage from '../screens/game/voting/Voting'
 import LeaderboardPage from '../screens/game/leaderboard/Leaderboard'
+import SocketService from '../services/SocketService'
 
 
 /**
@@ -22,13 +23,24 @@ function GameRouter({ config, socket, session, currentPlayer, players }) {
     // change this value if you want to see a different page
     const [gameState, setGameState] = useState(0)
 
-    // Round Model
-    const round = { time: '69', task: 'Erstelle einen Brief für deinen Vorgesetzen, welcher 300 Wörter lang ist.', tip: 'Meinst du, dass sie die Gedanken genommen haben, die wir gedacht haben, und wollen, dass wir denken, dass die Gedanken, die wir gedacht haben, die Gedanken sind, die wir jetzt denken? Denkst du das?' }
-
     // TODO: update game state dynamically
     // useEffect(() => {
-    //     setGameState()
-    // }, [])
+
+    // })
+
+    //timer
+    const [timer, setTimer] = useState(0)
+    SocketService.on('timer', ({ time }) => {
+        setTimer(time)
+    });
+
+    // Round Model
+    const [round, setRound] = useState({ time: timer, task: 'Erstelle einen Brief für deinen Vorgesetzen, welcher 300 Wörter lang ist.', tip: 'Meinst du, dass sie die Gedanken genommen haben, die wir gedacht haben, und wollen, dass wir denken, dass die Gedanken, die wir gedacht haben, die Gedanken sind, die wir jetzt denken? Denkst du das?' })
+
+    useEffect(() => {
+        setRound({time: timer, task: round.task, tip: round.tip})
+    }, [timer])
+    
 
     switch (gameState) {
         case -1:
