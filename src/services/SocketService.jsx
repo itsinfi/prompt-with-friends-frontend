@@ -115,10 +115,10 @@ class SocketService {
      * emit an event
      * 
      * @param {*} eventName name of event
-     * @param {*} onEvent message to emit
+     * @param {*} message message to emit
      */
-    static emit(eventName, onEvent) {
-        this.socket.emit(eventName, onEvent)
+    static emit(eventName, message) {
+        this.socket.emit(eventName, message)
     }
 
     /**

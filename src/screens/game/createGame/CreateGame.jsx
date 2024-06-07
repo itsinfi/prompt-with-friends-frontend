@@ -7,6 +7,7 @@ import { ToastContainer } from 'react-toastify'
 import { SuccessSnackBar } from '../../../components/snackBar/SnackBar'
 import PropTypes from 'prop-types'
 import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner'
+import SocketService from '../../../services/SocketService'
 
 
 
@@ -43,6 +44,11 @@ function CreateGamePage({ config, socket, session, currentPlayer, players }) {
 
     //Success Snack Bar for copying to clipboard
     const copySuccessSnackBar = SuccessSnackBar('Link kopiert!')
+
+
+    const initRound = () => {
+        SocketService.emit('initRound', {session: session.sessionCode});
+    }
 
 
     return (
@@ -82,7 +88,7 @@ function CreateGamePage({ config, socket, session, currentPlayer, players }) {
                         {/* Start game card */}
                             {currentPlayer.isHost && startGame
                                 && (<Card>
-                                        <button className='start-game'>
+                                        <button className='start-game' onClick={initRound}>
                                             Start game
                                         </button>
                                     </Card>)}
