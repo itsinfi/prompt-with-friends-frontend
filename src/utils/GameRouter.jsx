@@ -21,12 +21,12 @@ function GameRouter({ config, socket, session, currentPlayer, players }) {
 
     // current game state
     // change this value if you want to see a different page
-    const [gameState, setGameState] = useState(0)
+    const [gameState, setGameState] = useState({activeRound: null, roundPhase: -1, rounds: []})
 
-    // TODO: update game state dynamically
-    // useEffect(() => {
-
-    // })
+    // update game state on session update
+    useEffect(() => {
+        setGameState(session.gamestate)
+    }, [session])
 
     //timer
     const [timer, setTimer] = useState(0)
@@ -42,7 +42,7 @@ function GameRouter({ config, socket, session, currentPlayer, players }) {
     }, [timer])
     
 
-    switch (gameState) {
+    switch (gameState.roundPhase) {
         case -1:
             return <CreateGamePage config={config} socket={socket} session={session} currentPlayer={currentPlayer} players={players}/>
         case 0:
@@ -52,7 +52,7 @@ function GameRouter({ config, socket, session, currentPlayer, players }) {
         case 2:
             return <LeaderboardPage socket={socket} currentPlayer={currentPlayer} players={players} round={round}/>
         default:
-            throw new Error('Die Session konnte nicht richtig ausgelesen werden.')
+            throw new Error('Die Spielphase konnte nicht richtig ausgelesen werden.')
     }
     
 }
