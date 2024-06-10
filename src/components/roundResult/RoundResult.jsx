@@ -72,7 +72,7 @@ RoundResult.propTypes = {
     disableMargin: PropTypes.bool,
     isSelected: PropTypes.bool,
     showScore: PropTypes.bool,
-    currentPlayerNumber: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    currentPlayerNumber: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 }
 
 

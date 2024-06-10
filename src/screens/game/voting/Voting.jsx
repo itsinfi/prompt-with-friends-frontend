@@ -21,19 +21,16 @@ import RoundResult from '../../../components/roundResult/RoundResult'
  * @param players Array of all players in the session
  * @returns 
  */
-function VotingPage({ socket, players, round }) {
+function VotingPage({ socket, currentPlayer, players, round, timer, results }) {
 
-    // Result Model
-    // const [result, setResult] = useState(null)
-    const result = { prompt: 'Erstelle einen Brief für deinen Vorgesetzen, welcher 300 Wörter lang ist.', result: 'Erstelle einen Brief für deinen Vorgesetzen, welcher 300 Wörter lang ist.' }
 
-    // playerNumber that is selected for vote
+    // playerNumber that is selected for vote TODO: remove
     const [selectedNumber, setSelectedNumber] = useState(null)
 
 
     // change vote
-    const onVote = (player) => {
-        setSelectedNumber(player.playerNumber)
+    const onVote = (result) => {
+        setSelectedNumber(result.playerNumber)
     }
 
 
@@ -53,7 +50,7 @@ function VotingPage({ socket, players, round }) {
                             <div className='flex-row jc-around'>
                                 <h1>Voting</h1>
                                     
-                                <Timer seconds={round.time} label='bis zu den Ergebnissen'/>   
+                                <Timer seconds={timer} label='bis zu den Ergebnissen'/>   
                             </div>
 
                             {/*Task description*/}
@@ -61,22 +58,43 @@ function VotingPage({ socket, players, round }) {
                                 
 
                         </Card>
+                            
                             {/*Results*/}
-                            <div className='grid-container'>
-                                    
-                                {
-                                    players.map(player => (
-                                        <RoundResult
-                                            key={player.playerNumber}
-                                            player={player}
-                                            result={result}
-                                            onVote={(player) => { onVote(player) }}
-                                            isSelected={selectedNumber != null && player.playerNumber === selectedNumber} 
-                                        />
-                                    ))
-                                }
 
-                            </div>
+                            {
+                                results.length === 0
+                            
+                                    
+                                // empty placeholder for no results
+                                ?   <Card>
+                                        <h1>Keine Ergebnisse</h1>
+                                    </Card>
+                                    
+
+                                // show all results
+                                :   <div className='grid-container'>
+                                    
+                                        {
+
+                                            results
+                                                .filter(
+                                                    result => result.playerNumber !== currentPlayer.playerNumber
+                                                )
+                                                .map(result => (
+                                                    <RoundResult
+                                                        key={result.playerNumber}
+                                                        player={result}
+                                                        result={result}
+                                                        onVote={(result) => { onVote(result) }}
+                                                        isSelected={selectedNumber != null && result.playerNumber === selectedNumber} 
+                                                    />
+                                                ))
+                                        }
+        
+                                    </div>
+                            }
+
+                            
                     </>
                 
                 ) 
@@ -93,8 +111,11 @@ function VotingPage({ socket, players, round }) {
 
 VotingPage.propTypes = {
     socket: PropTypes.object,
+    currentPlayer: PropTypes.object,
     players: PropTypes.array,
-    round: PropTypes.object
+    round: PropTypes.object,
+    timer: PropTypes.number,
+    results: PropTypes.array
 }
 
 export default VotingPage

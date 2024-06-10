@@ -23,10 +23,10 @@ import PromptingService from '../../../services/PromptingService'
  * @param players Array of all players in the session
  * @returns 
  */
-function InputPromptPage({ socket, session, currentPlayer, players, round }) {
+function InputPromptPage({ socket, session, currentPlayer, players, round, timer, results }) {
 
     // Result Model
-    const [result, setResult] = useState(null)
+    const [result, setResult] = useState(results.find(result => result.playerNumber === currentPlayer.playerNumber))
 
     // Disable submit for the prompt input form
     const [disablePrompting, setDisablePrompting] = useState(false)
@@ -88,7 +88,7 @@ function InputPromptPage({ socket, session, currentPlayer, players, round }) {
                         {/*Game progress*/}
                         
                         <Card >
-                            <Timer seconds={round.time} label='bis zum Voting'/>  
+                            <Timer seconds={timer} label='bis zum Voting'/>  
                         </Card>
                         
                             
@@ -147,7 +147,9 @@ InputPromptPage.propTypes = {
     session: PropTypes.object,
     currentPlayer: PropTypes.object,
     players: PropTypes.array,
-    round: PropTypes.object
+    round: PropTypes.object,
+    timer: PropTypes.number,
+    results: PropTypes.array
 }
 
 export default InputPromptPage

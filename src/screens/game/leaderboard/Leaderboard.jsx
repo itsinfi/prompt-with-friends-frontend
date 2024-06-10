@@ -20,7 +20,7 @@ import RoundResult from '../../../components/roundResult/RoundResult'
  * @param players Array of all players in the session
  * @returns 
  */
-function LeaderboardPage({ socket, currentPlayer, players, round }) {
+function LeaderboardPage({ socket, currentPlayer, players, round, timer }) {
 
     // Result Model
     // const [result, setResult] = useState(null)
@@ -42,7 +42,7 @@ function LeaderboardPage({ socket, currentPlayer, players, round }) {
                             <div className='flex-row jc-around'>
                                 <h1>Ergebnisse</h1>
                                     
-                                <Timer seconds={round.time} label='bis zur nächsten Runde'/>   
+                                <Timer seconds={timer} label='bis zur nächsten Runde'/>   
                             </div>
 
                             {/*Task description*/}
@@ -83,7 +83,8 @@ LeaderboardPage.propTypes = {
     socket: PropTypes.object,
     currentPlayer: PropTypes.object,
     players: PropTypes.array,
-    round: PropTypes.object
+    round: PropTypes.object,
+    timer: PropTypes.number
 }
 
 export default LeaderboardPage
