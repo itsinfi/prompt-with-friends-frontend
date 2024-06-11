@@ -33,9 +33,12 @@ function RoundResult({ result, player, onVote = null, disableMargin = true, isSe
                     {/* Result preview */}
                     <h3 className='t-align-l ph-20'>Eingabe</h3>
                     <PromptTextArea
-                        placeholder=''
+                        placeholder='Keine Eingabe'
                         initialValue={result != null ? result.prompt : ''}
-                        overrideHeight='100px'
+                        overrideStyle={result == null
+                            ? {minHeight: '0'}
+                            : {minHeight: '100px'}
+                        }
                     />
 
 
@@ -45,10 +48,13 @@ function RoundResult({ result, player, onVote = null, disableMargin = true, isSe
                     {/* Prompt input form */}
                     <h3 className='t-align-l ph-20'>Ausgabe</h3>
                     <PromptTextArea
-                        placeholder=''
+                        placeholder='Kein Ergebnis'
                         initialValue={result != null ? result.result : ''}
                         highlightColor='var(--secondary)'
-                        overrideHeight='400px'
+                        overrideStyle={result == null
+                            ? {minHeight: '0'}
+                            : {minHeight: '400px'}
+                        }
                     />
 
 
@@ -67,7 +73,7 @@ function RoundResult({ result, player, onVote = null, disableMargin = true, isSe
 
 RoundResult.propTypes = {
     result: PropTypes.object,
-    player: PropTypes.object.isRequired,
+    player: PropTypes.object,
     onVote: PropTypes.func,
     disableMargin: PropTypes.bool,
     isSelected: PropTypes.bool,

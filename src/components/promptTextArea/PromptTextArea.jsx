@@ -19,7 +19,7 @@ import { ErrorSnackBar } from '../../components/snackBar/SnackBar'
  * @param overrideHeight used to dynamically adjust the minHeight
  * @returns 
  */
-function PromptTextArea({ enableInput = false, onSubmitInput = () => { }, disableInput = false, disableSubmit = false, placeholder = '', initialValue = '', highlightColor = '', overrideHeight = ''}) {
+function PromptTextArea({ enableInput = false, onSubmitInput = () => {}, disableInput = false, disableSubmit = false, placeholder = '', initialValue = '', highlightColor = '', overrideStyle = {} }) {
 
     // update height of prompt text area dynamically when there is a new line added
     const [promptText, setPromptText] = useState(initialValue);
@@ -92,13 +92,15 @@ function PromptTextArea({ enableInput = false, onSubmitInput = () => { }, disabl
                                     
 
                 {/* Text Area */}
-                <textarea style={overrideHeight ? {minHeight: overrideHeight} : {}} className={enableInput ? 'prompt-input' : 'prompt-output'}
+                <textarea
+                    style={overrideStyle}
+                    className={enableInput ? 'prompt-input' : 'prompt-output'}
                     disabled={disableInput}
                     readOnly={!enableInput}
                     value={enableInput ? promptText : initialValue}
                     placeholder={placeholder}
                     onChange={onChange}
-                    rows={calculateRows(enableInput ? promptText : initialValue) > 1 ? calculateRows(enableInput ? promptText : initialValue) : 1}
+                    // rows={calculateRows(enableInput ? promptText : initialValue) > 1 ? calculateRows(enableInput ? promptText : initialValue) : 1}
                     onFocus={onFocus}
                     onBlur={onBlur}
                     onKeyDown={onKeyDown} />
@@ -124,7 +126,7 @@ PromptTextArea.propTypes = {
     placeholder: PropTypes.string,
     initialValue: PropTypes.string,
     highlightColor: PropTypes.string,
-    overrideHeight: PropTypes.string
+    overrideStyle: PropTypes.object
 }
 
 

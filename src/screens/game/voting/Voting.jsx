@@ -92,7 +92,6 @@ function VotingPage({ socket, currentPlayer, players, task, results }) {
                                                 .map(result => (
                                                     <RoundResult
                                                         key={result.playerNumber}
-                                                        player={result}
                                                         result={result}
                                                         onVote={(result) => { onVote(result) }}
                                                         isSelected={selectedNumber != null && result.playerNumber === selectedNumber} 
