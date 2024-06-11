@@ -85,7 +85,7 @@ function VotingPage({ socket, session, currentPlayer, players, task, results, vo
                                     
                                     // empty placeholder for no results
                                     ?   <Card>
-                                            <h1>Keine Ergebnisse</h1>
+                                            <h3>Keine Ergebnisse zum Voten</h3>
                                         </Card>
                                     
 
