@@ -112,6 +112,16 @@ class SocketService {
     }
 
     /**
+     * subscribe to event, but only for one callback
+     * 
+     * @param {*} eventName name of event 
+     * @param {*} onEvent callback function to execute
+     */
+    static once(eventName, onEvent) {
+        this.socket.once(eventName, onEvent)
+    }
+
+    /**
      * emit an event
      * 
      * @param {*} eventName name of event

@@ -12,18 +12,28 @@ import formatTimer from '../../utils/formatTimer'
  */
 const Timer = ({ seconds, label }) => {
 
+    // format seconds to mm:ss
     const time = formatTimer(seconds)
-    
+
+
+    // set additional styling to none
+    let additionalTimeStyle = ''
+
+    // set additional styling to red if less than 30 seconds
+    if (seconds < 30) {
+        additionalTimeStyle = 'red-timer'
+
+    // set additional styling to yellow if less than 60 seconds
+    } else if (seconds < 60) {
+        additionalTimeStyle = 'yellow-timer'
+    }
+        
+        
     return <div className='flex-column'>
 
                 <h1
-            className={`timer ${
-                        seconds < 30
-                                ? 'red-timer'
-                                : seconds < 60
-                                    ? 'yellow-timer'
-                                    : ''
-                        }`}>
+                    className=
+                        {`timer ${additionalTimeStyle}`}>
                     { time }
                 </h1>
                 

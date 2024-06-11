@@ -8,7 +8,7 @@ import TaskDescription from '../../../components/task/TaskDescription'
 import Timer from '../../../components/timer/Timer'
 import RoundResult from '../../../components/roundResult/RoundResult'
 import SocketService from '../../../services/SocketService'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 
 
@@ -26,9 +26,11 @@ function LeaderboardPage({ socket, currentPlayer, players, round }) {
 
     //timer
     const [timer, setTimer] = useState(0)
-    SocketService.on('timer', ({ time }) => {
-        setTimer(time)
-    });
+    useEffect(() => {
+        SocketService.on('timer', ({ time }) => {
+            setTimer(time)
+        });
+    }, [])
 
 
 

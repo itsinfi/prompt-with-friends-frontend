@@ -1,7 +1,7 @@
 import './InputPrompt.css'
 import { Outlet } from 'react-router-dom'
 import Card from '../../../components/card/Card'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ToastContainer } from 'react-toastify'
 import { ErrorSnackBar, InfoSnackBar, SuccessSnackBar } from '../../../components/snackBar/SnackBar'
 import PropTypes from 'prop-types'
@@ -29,9 +29,11 @@ function InputPromptPage({ socket, session, currentPlayer, players, round, resul
 
     //timer
     const [timer, setTimer] = useState(0)
-    SocketService.on('timer', ({ time }) => {
-        setTimer(time)
-    });
+    useEffect(() => {
+        SocketService.on('timer', ({ time }) => {
+            setTimer(time)
+        });
+    }, [])
 
 
     // Result Model

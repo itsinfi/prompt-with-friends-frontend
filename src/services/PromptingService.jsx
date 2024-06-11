@@ -10,6 +10,8 @@ class PromptingService {
     static inProcess = false
 
 
+
+
     /**
      * send a prompt to receive a result
      * 
@@ -37,7 +39,7 @@ class PromptingService {
         SocketService.emit("sendPrompt", {prompt: prompt, creator: playerNumber, session: session})
 
         // Add an event listener to call once the result has been received
-        SocketService.on("sendPrompt", ({timestamp, result}) => {
+        SocketService.once("sendPrompt", ({timestamp, result}) => {
             
             // set inProcess to false
             this.inProcess = false

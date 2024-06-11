@@ -1,7 +1,7 @@
 import './Voting.css'
 import { Outlet } from 'react-router-dom'
 import Card from '../../../components/card/Card'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ToastContainer } from 'react-toastify'
 import PropTypes from 'prop-types'
 import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner'
@@ -26,9 +26,11 @@ function VotingPage({ socket, currentPlayer, players, round, results }) {
 
     //timer
     const [timer, setTimer] = useState(0)
-    SocketService.on('timer', ({ time }) => {
-        setTimer(time)
-    });
+    useEffect(() => {
+        SocketService.on('timer', ({ time }) => {
+            setTimer(time)
+        });
+    }, [])
 
 
     // playerNumber that is selected for vote TODO: remove
@@ -86,7 +88,7 @@ function VotingPage({ socket, currentPlayer, players, round, results }) {
                                             results
                                                 .filter(
                                                     result => result.playerNumber !== currentPlayer.playerNumber
-                                                )
+                                                )//TODO: fix
                                                 .map(result => (
                                                     <RoundResult
                                                         key={result.playerNumber}
