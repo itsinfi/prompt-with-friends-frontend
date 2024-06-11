@@ -22,7 +22,7 @@ import { useEffect, useState } from 'react'
  * @param players Array of all players in the session
  * @returns 
  */
-function LeaderboardPage({ socket, currentPlayer, players, task, results }) {
+function LeaderboardPage({ socket, currentPlayer, players, taskDescription, results }) {
 
     //timer
     const [timer, setTimer] = useState(0)
@@ -53,7 +53,7 @@ function LeaderboardPage({ socket, currentPlayer, players, task, results }) {
                             </div>
 
                             {/*Task description*/}
-                            <TaskDescription description={task.description} />
+                            <TaskDescription description={taskDescription} />
                                 
 
                         </Card>
@@ -90,7 +90,7 @@ LeaderboardPage.propTypes = {
     socket: PropTypes.object,
     currentPlayer: PropTypes.object,
     players: PropTypes.array,
-    task: PropTypes.object,
+    taskDescription: PropTypes.string,
     results: PropTypes.array
 }
 

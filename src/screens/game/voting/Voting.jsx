@@ -24,7 +24,7 @@ import { SuccessSnackBar } from '../../../components/snackBar/SnackBar'
  * @param players Array of all players in the session
  * @returns 
  */
-function VotingPage({ socket, session, currentPlayer, players, task, results, votes }) {
+function VotingPage({ socket, session, currentPlayer, players, taskDescription, results, votes }) {
 
     //timer
     const [timer, setTimer] = useState(0)
@@ -72,7 +72,7 @@ function VotingPage({ socket, session, currentPlayer, players, task, results, vo
                             </div>
 
                             {/*Task description*/}
-                            <TaskDescription description={task.description} />
+                            <TaskDescription description={taskDescription} />
                                 
 
                         </Card>
@@ -131,7 +131,7 @@ VotingPage.propTypes = {
     session: PropTypes.object,
     currentPlayer: PropTypes.object,
     players: PropTypes.array,
-    task: PropTypes.object,
+    taskDescription: PropTypes.string,
     timer: PropTypes.number,
     results: PropTypes.array,
     votes: PropTypes.array

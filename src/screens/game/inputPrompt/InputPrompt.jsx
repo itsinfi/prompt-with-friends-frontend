@@ -24,7 +24,7 @@ import SocketService from '../../../services/SocketService'
  * @param players Array of all players in the session
  * @returns 
  */
-function InputPromptPage({ socket, session, currentPlayer, players, task, results }) {
+function InputPromptPage({ socket, session, currentPlayer, players, taskDescription, taskTip, results }) {
 
 
     //timer
@@ -87,7 +87,6 @@ function InputPromptPage({ socket, session, currentPlayer, players, task, result
     const promptErrorSnackBar = ErrorSnackBar('Prompt konnte nicht generiert werden!')
 
 
-
     return (
         <>
             {   //check if socket connection has been established + players are loaded
@@ -107,7 +106,7 @@ function InputPromptPage({ socket, session, currentPlayer, players, task, result
                         <Card>
 
                             {/*Task description*/}
-                                <TaskDescription description={task.description} tip={task.tips === undefined || task.tips.length === 0 ? '' : task.tips[0]} />
+                                <TaskDescription description={taskDescription} tip={taskTip} />
 
                             
                                 
@@ -158,7 +157,8 @@ InputPromptPage.propTypes = {
     session: PropTypes.object,
     currentPlayer: PropTypes.object,
     players: PropTypes.array,
-    task: PropTypes.object,
+    taskDescription: PropTypes.string,
+    taskTip: PropTypes.string,
     results: PropTypes.array
 }
 

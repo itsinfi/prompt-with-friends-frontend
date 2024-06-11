@@ -14,8 +14,11 @@ function HomePage() {
 
   return (
     <>
+
+      {/* Title Section */}
       <TitleWithDividers title='PromptWithFriends'/>
-        
+      
+      {/* Start Game Button */}
       <div className='center-screen'>
         <Link to='/createGame' relative='path'>
           <button className='createSession'>
@@ -23,6 +26,8 @@ function HomePage() {
           </button>
         </Link>
       </div>
+
+      {/* Outlet for React Router DOM */}
       <Outlet />
     </>
   )
