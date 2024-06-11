@@ -29,7 +29,7 @@ function CreateGamePage({ config, socket, session, currentPlayer, players }) {
     //check whether conditions to start the game are met
     const [startGame, setStartGame] = useState(null)
     useEffect(() => {
-        setStartGame(players.length > 1)
+        setStartGame(players.length > 2)
     }, [socket, players])
 
 

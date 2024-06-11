@@ -78,6 +78,7 @@ function SessionConnector({ child, config }) {
         //handle updates in the session
         SocketService.on('updateSession', (data) => {
             setSession(data.session)
+            setPlayers(data.session.players)
         });
 
         //handle server side errors
@@ -97,6 +98,7 @@ function SessionConnector({ child, config }) {
     }, [config, sessionCode])
 
 
+    // update players
     useEffect(() => {
         //handle updates for the players
         SocketService.on('updatePlayers', ({ players }) => {

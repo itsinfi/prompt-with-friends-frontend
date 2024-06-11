@@ -9,9 +9,11 @@ import getPlayerAvatarColor from '../../utils/playerAvatarColors'
  * 
  * @param player player model of the creator of the generation
  * @param currentPlayerNumber number of current player (to show 'you' badge)
+ * @param scoreIncrease amount of score increase this round
+ * @param position position of player/result
  * @returns 
  */
-function Score({ player, currentPlayerNumber }) {
+function Score({ player, currentPlayerNumber, scoreIncrease, position }) {
 
     const playerColor = getPlayerAvatarColor(player.playerNumber)
 
@@ -19,21 +21,19 @@ function Score({ player, currentPlayerNumber }) {
                 <div className='score-lighten ph-40 flex-row jc-between ai-center'>
 
 
-                    {/* TODO: change to position */}
-                    <h1 style={{fontSize: '128px', margin: 0}}>{ player.playerNumber }.</h1>
+                    <h1 style={{fontSize: '128px', margin: 0}}>{ position }.</h1>
 
                     {/* Score */}
                     <div className='flex-column ai-center'>
 
-                        {/* TODO: change to position */}
-                        <h1 style={{margin: 0}}>+{player.score} Punkte</h1>
+                        <h1 style={{margin: 0}}>+{scoreIncrease} Punkte</h1>
 
                         <p style={{margin: 0}}>insgesamt: {player.score} Punkte</p>
 
                     </div>
 
                     {/* Player Avatar */}
-                    <div><PlayerAvatar player={ player } currentPlayerNumber={ currentPlayerNumber }/></div>
+                    <div><PlayerAvatar player={ player } currentPlayerNumber={ currentPlayerNumber } position={position}/></div>
             
                 </div>
             </div>
@@ -42,7 +42,9 @@ function Score({ player, currentPlayerNumber }) {
 
 Score.propTypes = {
     player: PropTypes.object.isRequired,
-    currentPlayerNumber: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired
+    currentPlayerNumber: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    scoreIncrease: PropTypes.number.isRequired,
+    position: PropTypes.number.isRequired
 }
 
 

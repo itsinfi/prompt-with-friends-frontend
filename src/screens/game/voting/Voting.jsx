@@ -22,6 +22,9 @@ import { SuccessSnackBar } from '../../../components/snackBar/SnackBar'
  * @param session Session client connected to
  * @param currentPlayer Model of current player
  * @param players Array of all players in the session
+ * @param taskDescription description of task
+ * @param results array of results returned when sending prompts
+ * @param votes array of votes on players' results
  * @returns 
  */
 function VotingPage({ socket, session, currentPlayer, players, taskDescription, results, votes }) {
@@ -35,7 +38,7 @@ function VotingPage({ socket, session, currentPlayer, players, taskDescription, 
     }, [])
 
 
-    // playerNumber that is selected for vote TODO: remove
+    // playerNumber that is selected for vote
     const [vote, setVote] = useState(votes.find(vote => vote.voter === currentPlayer.playerNumber))
 
 

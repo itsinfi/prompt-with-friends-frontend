@@ -22,6 +22,9 @@ import SocketService from '../../../services/SocketService'
  * @param session Session client connected to
  * @param currentPlayer Model of current player
  * @param players Array of all players in the session
+ * @param taskDescription description for task
+ * @param taskTip random tip for task
+ * @param results array of results returned when sending prompts
  * @returns 
  */
 function InputPromptPage({ socket, session, currentPlayer, players, taskDescription, taskTip, results }) {

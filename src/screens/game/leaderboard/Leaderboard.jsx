@@ -8,7 +8,8 @@ import TaskDescription from '../../../components/task/TaskDescription'
 import Timer from '../../../components/timer/Timer'
 import RoundResult from '../../../components/roundResult/RoundResult'
 import SocketService from '../../../services/SocketService'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import getPositionMap from '../../../utils/getPositionMap'
 
 
 
@@ -20,11 +21,14 @@ import { useEffect, useState } from 'react'
  * @param session Session client connected to
  * @param currentPlayer Model of current player
  * @param players Array of all players in the session
+ * @param taskDescription description of task
+ * @param results array of results returned when sending prompts
+ * @param votes array of votes on players' results
  * @returns 
  */
-function LeaderboardPage({ socket, currentPlayer, players, taskDescription, results }) {
+function LeaderboardPage({ socket, currentPlayer, players, taskDescription, results, votes }) {
 
-    //timer
+    // timer
     const [timer, setTimer] = useState(0)
     useEffect(() => {
         SocketService.on('timer', ({ time }) => {
@@ -32,6 +36,9 @@ function LeaderboardPage({ socket, currentPlayer, players, taskDescription, resu
         });
     }, [])
 
+
+    // sorted map of players by position
+    const positionMap = useRef(getPositionMap(players))
 
 
     return (
@@ -60,7 +67,9 @@ function LeaderboardPage({ socket, currentPlayer, players, taskDescription, resu
                             {/*Results with score*/}
                                     
                                 {
-                                    players.map(player => (
+                                    players
+                                    .sort((player1, player2) => player1.score < player2.score)
+                                    .map(player => (
                                         <RoundResult
                                             key={ player.playerNumber }
                                             player={ player }
@@ -69,6 +78,8 @@ function LeaderboardPage({ socket, currentPlayer, players, taskDescription, resu
                                             isSelected={ false } 
                                             showScore={ true }
                                             currentPlayerNumber={currentPlayer.playerNumber}
+                                            votesOnPlayer={votes.filter(vote => vote.voted === currentPlayer.playerNumber)}
+                                            position={positionMap.current.get(player.playerNumber)}
                                         />
                                     ))
                                 }
@@ -91,7 +102,8 @@ LeaderboardPage.propTypes = {
     currentPlayer: PropTypes.object,
     players: PropTypes.array,
     taskDescription: PropTypes.string,
-    results: PropTypes.array
+    results: PropTypes.array,
+    votes: PropTypes.array
 }
 
 export default LeaderboardPage

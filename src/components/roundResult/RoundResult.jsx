@@ -15,15 +15,17 @@ import Score from '../score/Score'
  * @param isSelected whether this vote is selected or not (will use visual highlighting to indicate selection if true)
  * @param showScore shows data related to scoring for leaderboard (score, position, user name)
  * @param currentPlayerNumber number of current player (to show 'you' badge) (only required if showScore = true)
+ * @param votesOnPlayer list of votes on the result
+ * @param position position of player/result
  * @returns 
  */
-function RoundResult({ result, player, onVote = null, disableMargin = true, isSelected = false, showScore = false, currentPlayerNumber }) {
+function RoundResult({ result, player, onVote = null, disableMargin = true, isSelected = false, showScore = false, currentPlayerNumber, votesOnPlayer = [], position = 0 }) {
 
     return <div className={isSelected ? 'selected-vote' : ''}>
                 <Card disableMargin={disableMargin} isSelected={isSelected}>  
                     
                     {/* Score (if enabled) */}
-                    {showScore ? <Score player={ player } currentPlayerNumber={ currentPlayerNumber }/> 
+                    {showScore ? <Score player={player} currentPlayerNumber={currentPlayerNumber} scoreIncrease={votesOnPlayer.length} position={position} /> 
                                 
                                 : <></>
                     }
@@ -79,6 +81,8 @@ RoundResult.propTypes = {
     isSelected: PropTypes.bool,
     showScore: PropTypes.bool,
     currentPlayerNumber: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    votesOnPlayer: PropTypes.array,
+    position: PropTypes.number
 }
 
 

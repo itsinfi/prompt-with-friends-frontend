@@ -26,11 +26,11 @@ class SocketService {
             this.socket = io(config.be_host, { autoConnect: false, reconnection: false })
 
             
-            //TODO: remove, only for dev purposes
+            // only for dev purposes
             //prints out every response in console
-            this.socket.onAny((event, ...args) => {
-                console.log(event, args);
-            });
+            // this.socket.onAny((event, ...args) => {
+            //     console.log(event, args);
+            // });
 
             //define how to handle session data returned by backend (and then execute callback function)
             this.handleSessionData(onConnection)

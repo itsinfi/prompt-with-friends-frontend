@@ -23,7 +23,7 @@ function GameRouter({ config, socket, session, currentPlayer, players }) {
     const [gameState, setGameState] = useState(session.gamestate)
     
     // Task
-    const [task, setTask] = useState(session.gamestate.rounds === undefined || session.gamestate.rounds.length === 0 ? {description: '', tips: []} : session.gamestate.rounds[session.gamestate.activeRound].task)
+    const [task, setTask] = useState(session.gamestate.rounds === undefined || session.gamestate.rounds.task === undefined  || session.gamestate.rounds.length === 0 ? {description: '', tips: []} : session.gamestate.rounds[session.gamestate.activeRound].task)
 
     // Results
     const [results, setResults] = useState([])
@@ -33,8 +33,6 @@ function GameRouter({ config, socket, session, currentPlayer, players }) {
 
     // update Game State, task, results and votes on session update
     useEffect(() => {
-
-        console.log(session)
 
         // update game state
         setGameState(session.gamestate)
