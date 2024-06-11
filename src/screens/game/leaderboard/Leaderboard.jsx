@@ -68,7 +68,7 @@ function LeaderboardPage({ socket, currentPlayer, players, taskDescription, resu
                                     
                                 {
                                     players
-                                    .sort((player1, player2) => player1.score < player2.score)
+                                    .sort((player1, player2) => player2.score - player1.score)
                                     .map(player => (
                                         <RoundResult
                                             key={ player.playerNumber }
@@ -78,7 +78,7 @@ function LeaderboardPage({ socket, currentPlayer, players, taskDescription, resu
                                             isSelected={ false } 
                                             showScore={ true }
                                             currentPlayerNumber={currentPlayer.playerNumber}
-                                            votesOnPlayer={votes.filter(vote => vote.voted === currentPlayer.playerNumber)}
+                                            votesOnPlayer={votes.filter(vote => vote.voted === player.playerNumber)}
                                             position={positionMap.current.get(player.playerNumber)}
                                         />
                                     ))

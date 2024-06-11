@@ -19,7 +19,6 @@ import { SuccessSnackBar } from '../../../components/snackBar/SnackBar'
  * 
  * @param config Config of the frontend
  * @param socket Socket client object
- * @param session Session client connected to
  * @param currentPlayer Model of current player
  * @param players Array of all players in the session
  * @param taskDescription description of task
@@ -27,7 +26,7 @@ import { SuccessSnackBar } from '../../../components/snackBar/SnackBar'
  * @param votes array of votes on players' results
  * @returns 
  */
-function VotingPage({ socket, session, currentPlayer, players, taskDescription, results, votes }) {
+function VotingPage({ socket, currentPlayer, players, taskDescription, results, votes }) {
 
     //timer
     const [timer, setTimer] = useState(0)
@@ -45,7 +44,7 @@ function VotingPage({ socket, session, currentPlayer, players, taskDescription, 
     // change vote
     const onVote = (result) => {
         setVote({voted: result.playerNumber})
-        VotingService.sendVote(currentPlayer.playerNumber, result.playerNumber, session.sessionCode, () => {
+        VotingService.sendVote(result.playerNumber, () => {
             votingSuccessSnackBar()
         })
     }
@@ -83,7 +82,9 @@ function VotingPage({ socket, session, currentPlayer, players, taskDescription, 
                             {/*Results*/}
 
                             {
-                                results.length === 0
+                                results
+                                    .filter(result => result.playerNumber !== currentPlayer.playerNumber)
+                                    .length === 0
                             
                                     
                                     // empty placeholder for no results
@@ -131,7 +132,6 @@ function VotingPage({ socket, session, currentPlayer, players, taskDescription, 
 
 VotingPage.propTypes = {
     socket: PropTypes.object,
-    session: PropTypes.object,
     currentPlayer: PropTypes.object,
     players: PropTypes.array,
     taskDescription: PropTypes.string,

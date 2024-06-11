@@ -47,7 +47,7 @@ function CreateGamePage({ config, socket, session, currentPlayer, players }) {
 
 
     const initRound = () => {
-        SocketService.emit('initRound', {session: session.sessionCode});
+        SocketService.emit('initRound');
     }
 
 

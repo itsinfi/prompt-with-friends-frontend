@@ -5,7 +5,7 @@ import InputPromptPage from '../screens/game/inputPrompt/InputPrompt'
 import VotingPage from '../screens/game/voting/Voting'
 import LeaderboardPage from '../screens/game/leaderboard/Leaderboard'
 import getRandomTip from './getRandomTip'
-import filterLatestResults from './filterNewestResults'
+import filterLatestResults from './filterLatestResults'
 
 
 /**
@@ -70,11 +70,11 @@ function GameRouter({ config, socket, session, currentPlayer, players }) {
         
         // Input Prompt Page
         case 0:
-            return <InputPromptPage config={config} socket={socket} session={session} currentPlayer={currentPlayer} players={players} taskDescription={task.description} taskTip={getRandomTip(task.tips)} results={results} />
+            return <InputPromptPage config={config} socket={socket} currentPlayer={currentPlayer} players={players} taskDescription={task.description} taskTip={getRandomTip(task.tips)} results={results} />
         
         // Voting Page
         case 1:
-            return <VotingPage config={config} socket={socket} session={session} currentPlayer={currentPlayer} players={players} taskDescription={task.description} results={results} votes={votes} />
+            return <VotingPage config={config} socket={socket} currentPlayer={currentPlayer} players={players} taskDescription={task.description} results={results} votes={votes} />
         
         // Leaderboard Page
         case 2:

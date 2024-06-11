@@ -16,11 +16,9 @@ class PromptingService {
      * send a prompt to receive a result
      * 
      * @param {*} prompt prompt input
-     * @param {*} playerNumber playerNumber of the creator
-     * @param {*} session Session code of the current session of the user
      * @param {*} callBack callback function to execute once result has been received
      */
-    static sendTextPrompt(prompt, playerNumber, session, callBack) {
+    static sendTextPrompt(prompt, callBack) {
 
         // Check if input is empty
         if (!prompt || prompt.isEmpty) {
@@ -36,7 +34,7 @@ class PromptingService {
         this.inProcess = true
         
         // Submit prompt to backend
-        SocketService.emit("sendPrompt", {prompt: prompt, creator: playerNumber, session: session})
+        SocketService.emit("sendPrompt", {prompt: prompt})
 
         // Add an event listener to call once the result has been received
         SocketService.once("sendPrompt", ({timestamp, result}) => {

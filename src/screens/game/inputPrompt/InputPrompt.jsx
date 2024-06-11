@@ -19,7 +19,6 @@ import SocketService from '../../../services/SocketService'
  * 
  * @param config Config of the frontend
  * @param socket Socket client object
- * @param session Session client connected to
  * @param currentPlayer Model of current player
  * @param players Array of all players in the session
  * @param taskDescription description for task
@@ -27,7 +26,7 @@ import SocketService from '../../../services/SocketService'
  * @param results array of results returned when sending prompts
  * @returns 
  */
-function InputPromptPage({ socket, session, currentPlayer, players, taskDescription, taskTip, results }) {
+function InputPromptPage({ socket, currentPlayer, players, taskDescription, taskTip, results }) {
 
 
     //timer
@@ -67,7 +66,7 @@ function InputPromptPage({ socket, session, currentPlayer, players, taskDescript
 
 
         // Send text prompt and provide callback function
-        PromptingService.sendTextPrompt(prompt, currentPlayer.playerNumber, session.sessionCode, (timestamp, result) => {
+        PromptingService.sendTextPrompt(prompt, (timestamp, result) => {
 
             //if successful, save result model and show success snack bar
             try {
@@ -157,7 +156,6 @@ function InputPromptPage({ socket, session, currentPlayer, players, taskDescript
 
 InputPromptPage.propTypes = {
     socket: PropTypes.object,
-    session: PropTypes.object,
     currentPlayer: PropTypes.object,
     players: PropTypes.array,
     taskDescription: PropTypes.string,
