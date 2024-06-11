@@ -8,6 +8,7 @@ import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner'
 import TaskDescription from '../../../components/task/TaskDescription'
 import Timer from '../../../components/timer/Timer'
 import RoundResult from '../../../components/roundResult/RoundResult'
+import SocketService from '../../../services/SocketService'
 
 
 
@@ -21,7 +22,13 @@ import RoundResult from '../../../components/roundResult/RoundResult'
  * @param players Array of all players in the session
  * @returns 
  */
-function VotingPage({ socket, currentPlayer, players, round, timer, results }) {
+function VotingPage({ socket, currentPlayer, players, round, results }) {
+
+    //timer
+    const [timer, setTimer] = useState(0)
+    SocketService.on('timer', ({ time }) => {
+        setTimer(time)
+    });
 
 
     // playerNumber that is selected for vote TODO: remove

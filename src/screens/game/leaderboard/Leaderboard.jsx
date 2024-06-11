@@ -7,6 +7,8 @@ import LoadingSpinner from '../../../components/loadingSpinner/LoadingSpinner'
 import TaskDescription from '../../../components/task/TaskDescription'
 import Timer from '../../../components/timer/Timer'
 import RoundResult from '../../../components/roundResult/RoundResult'
+import SocketService from '../../../services/SocketService'
+import { useState } from 'react'
 
 
 
@@ -20,7 +22,15 @@ import RoundResult from '../../../components/roundResult/RoundResult'
  * @param players Array of all players in the session
  * @returns 
  */
-function LeaderboardPage({ socket, currentPlayer, players, round, timer }) {
+function LeaderboardPage({ socket, currentPlayer, players, round }) {
+
+    //timer
+    const [timer, setTimer] = useState(0)
+    SocketService.on('timer', ({ time }) => {
+        setTimer(time)
+    });
+
+
 
     // Result Model
     // const [result, setResult] = useState(null)
@@ -83,8 +93,7 @@ LeaderboardPage.propTypes = {
     socket: PropTypes.object,
     currentPlayer: PropTypes.object,
     players: PropTypes.array,
-    round: PropTypes.object,
-    timer: PropTypes.number
+    round: PropTypes.object
 }
 
 export default LeaderboardPage

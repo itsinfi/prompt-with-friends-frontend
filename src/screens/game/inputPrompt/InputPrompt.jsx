@@ -10,6 +10,7 @@ import PromptTextArea from '../../../components/promptTextArea/PromptTextArea'
 import TaskDescription from '../../../components/task/TaskDescription'
 import Timer from '../../../components/timer/Timer'
 import PromptingService from '../../../services/PromptingService'
+import SocketService from '../../../services/SocketService'
 
 
 
@@ -23,7 +24,15 @@ import PromptingService from '../../../services/PromptingService'
  * @param players Array of all players in the session
  * @returns 
  */
-function InputPromptPage({ socket, session, currentPlayer, players, round, timer, results }) {
+function InputPromptPage({ socket, session, currentPlayer, players, round, results }) {
+
+
+    //timer
+    const [timer, setTimer] = useState(0)
+    SocketService.on('timer', ({ time }) => {
+        setTimer(time)
+    });
+
 
     // Result Model
     const [result, setResult] = useState(results.find(result => result.playerNumber === currentPlayer.playerNumber))
@@ -148,7 +157,6 @@ InputPromptPage.propTypes = {
     currentPlayer: PropTypes.object,
     players: PropTypes.array,
     round: PropTypes.object,
-    timer: PropTypes.number,
     results: PropTypes.array
 }
 

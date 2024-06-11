@@ -4,7 +4,6 @@ import CreateGamePage from '../screens/game/createGame/CreateGame'
 import InputPromptPage from '../screens/game/inputPrompt/InputPrompt'
 import VotingPage from '../screens/game/voting/Voting'
 import LeaderboardPage from '../screens/game/leaderboard/Leaderboard'
-import SocketService from '../services/SocketService'
 
 
 /**
@@ -27,14 +26,6 @@ function GameRouter({ config, socket, session, currentPlayer, players }) {
     useEffect(() => {
         setGameState(session.gamestate)
     }, [session])
-
-
-
-    //timer
-    const [timer, setTimer] = useState(0)
-    SocketService.on('timer', ({ time }) => {
-        setTimer(time)
-    });
     
     
     // Round Model
@@ -61,16 +52,28 @@ function GameRouter({ config, socket, session, currentPlayer, players }) {
     }, [session])
     
 
+
+    // load correct child based on round phase
     switch (gameState.roundPhase) {
+
+        // Create Game Page
         case null:
         case -1:
             return <CreateGamePage config={config} socket={socket} session={session} currentPlayer={currentPlayer} players={players} />
+        
+        // Input Prompt Page
         case 0:
-            return <InputPromptPage config={config} socket={socket} session={session} currentPlayer={currentPlayer} players={players} round={round} timer={timer} results={results} />
+            return <InputPromptPage config={config} socket={socket} session={session} currentPlayer={currentPlayer} players={players} round={round} results={results} />
+        
+        // Voting Page
         case 1:
-            return <VotingPage config={config} socket={socket} session={session} currentPlayer={currentPlayer} players={players} round={round} timer={timer} results={results} />
+            return <VotingPage config={config} socket={socket} session={session} currentPlayer={currentPlayer} players={players} round={round} results={results} />
+        
+        // Leaderboard Page
         case 2:
-            return <LeaderboardPage socket={socket} currentPlayer={currentPlayer} players={players} round={round} timer={timer} results={results} />
+            return <LeaderboardPage socket={socket} currentPlayer={currentPlayer} players={players} round={round} results={results} />
+        
+        // Error for invalid values
         default:
             throw new Error('Die Spielphase konnte nicht richtig ausgelesen werden.')
     }

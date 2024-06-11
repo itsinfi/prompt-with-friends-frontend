@@ -15,6 +15,7 @@ import SessionCreator from './utils/SessionCreator'
  */
 const router = createBrowserRouter(
   [
+    // Home Page
     {
       path: "/",
       element: <ParticlesWrapper child={ <HomePage/> } />,
@@ -24,22 +25,27 @@ const router = createBrowserRouter(
       children: [
       ]
     },
+
+    // Create Game Page
     {
       path: "/createGame",
-      element: <ErrorMessage>
-          <ParticlesWrapper
-            child={
-              <ConfigLoader
-              child={ <SessionCreator/> }
-              />
-                    }/>
-      </ErrorMessage> ,
+      element:  <ErrorMessage>
+                  <ParticlesWrapper
+                    child={
+                      <ConfigLoader
+                        child={ <SessionCreator/> }
+                      />
+                    }
+                  />
+                </ErrorMessage> ,
       loader: () => {
         return 1
       },
       children: [
       ]
     },
+
+    // Game Page
     {
       path: "/:session",
       element: <GamePage/>,
