@@ -20,17 +20,10 @@ import getRandomTip from './getRandomTip'
 function GameRouter({ config, socket, session, currentPlayer, players }) {
 
     // current game state
-    // change this value if you want to see a different page
     const [gameState, setGameState] = useState(session.gamestate)
-
-    // update game state on session update
-    useEffect(() => {
-        setGameState(session.gamestate)
-    }, [session])
-    
     
     // Task
-    const [task, setTask] = useState({description: '', tips: []})
+    const [task, setTask] = useState(session.gamestate.rounds === undefined || session.gamestate.rounds.length === 0 ? {description: '', tips: []} : session.gamestate.rounds[session.gamestate.activeRound].task)
 
     // Results
     const [results, setResults] = useState([])
@@ -38,11 +31,16 @@ function GameRouter({ config, socket, session, currentPlayer, players }) {
     // Votes
     const [votes, setVotes] = useState([])
 
-    // update round and results on session update
+    // update Game State, task, results and votes on session update
     useEffect(() => {
 
+        console.log(session)
+
+        // update game state
+        setGameState(session.gamestate)
+
         // check if no round is initialized yet
-        if (!session.gamestate.activeRound || session.gamestate.rounds.isEmpty) {
+        if (session.gamestate.activeRound === null || session.gamestate.rounds.isEmpty) {
             return
         }
 
