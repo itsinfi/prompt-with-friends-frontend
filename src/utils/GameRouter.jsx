@@ -21,12 +21,12 @@ function GameRouter({ config, socket, session, currentPlayer, players }) {
 
     // current game state
     // change this value if you want to see a different page
-    const [gameState, setGameState] = useState({activeRound: null, roundPhase: 0, rounds: []})
+    const [gameState, setGameState] = useState(session.gamestate)
 
     // update game state on session update
-    // useEffect(() => {
-    //     setGameState(session.gamestate)
-    // }, [session])
+    useEffect(() => {
+        setGameState(session.gamestate)
+    }, [session])
 
 
 
@@ -41,7 +41,7 @@ function GameRouter({ config, socket, session, currentPlayer, players }) {
     const [round, setRound] = useState({ task: 'Erstelle einen Brief für deinen Vorgesetzen, welcher 300 Wörter lang ist.', tip: 'Meinst du, dass sie die Gedanken genommen haben, die wir gedacht haben, und wollen, dass wir denken, dass die Gedanken, die wir gedacht haben, die Gedanken sind, die wir jetzt denken? Denkst du das?' })
 
     // Results
-    const [results, setResults] = useState([{playerNumber: 4, prompt: "prompt", result: "result"}, {playerNumber: 2, prompt: "prompt", result: "result"}])
+    const [results, setResults] = useState([])
 
     // update round and results on session update
     useEffect(() => {
@@ -56,12 +56,13 @@ function GameRouter({ config, socket, session, currentPlayer, players }) {
 
         // set round to activeRound
         // setRound(session.gamestate.rounds[session.gamestate.activeRound]) //TODO:
-        // setResults(_round.results)
+        setResults(_round.results)
 
     }, [session])
     
 
     switch (gameState.roundPhase) {
+        case null:
         case -1:
             return <CreateGamePage config={config} socket={socket} session={session} currentPlayer={currentPlayer} players={players} />
         case 0:
