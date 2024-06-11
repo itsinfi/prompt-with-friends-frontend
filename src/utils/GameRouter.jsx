@@ -28,8 +28,8 @@ function GameRouter({ config, socket, session, currentPlayer, players }) {
     }, [session])
     
     
-    // Round Model
-    const [round, setRound] = useState({ task: 'Erstelle einen Brief für deinen Vorgesetzen, welcher 300 Wörter lang ist.', tip: 'Meinst du, dass sie die Gedanken genommen haben, die wir gedacht haben, und wollen, dass wir denken, dass die Gedanken, die wir gedacht haben, die Gedanken sind, die wir jetzt denken? Denkst du das?' })
+    // Task
+    const [task, setTask] = useState({description: '', tips: []})
 
     // Results
     const [results, setResults] = useState([])
@@ -46,8 +46,10 @@ function GameRouter({ config, socket, session, currentPlayer, players }) {
         const _round = session.gamestate.rounds[session.gamestate.activeRound]
 
         // set round to activeRound
-        // setRound(session.gamestate.rounds[session.gamestate.activeRound]) //TODO:
-        setResults(_round.results)
+        if (_round !== undefined) {
+            setTask(_round.task)
+            setResults(_round.results)
+        }
 
     }, [session])
     
@@ -63,15 +65,15 @@ function GameRouter({ config, socket, session, currentPlayer, players }) {
         
         // Input Prompt Page
         case 0:
-            return <InputPromptPage config={config} socket={socket} session={session} currentPlayer={currentPlayer} players={players} round={round} results={results} />
+            return <InputPromptPage config={config} socket={socket} session={session} currentPlayer={currentPlayer} players={players} task={task} results={results} />
         
         // Voting Page
         case 1:
-            return <VotingPage config={config} socket={socket} session={session} currentPlayer={currentPlayer} players={players} round={round} results={results} />
+            return <VotingPage config={config} socket={socket} session={session} currentPlayer={currentPlayer} players={players} task={task} results={results} />
         
         // Leaderboard Page
         case 2:
-            return <LeaderboardPage socket={socket} currentPlayer={currentPlayer} players={players} round={round} results={results} />
+            return <LeaderboardPage socket={socket} currentPlayer={currentPlayer} players={players} task={task} results={results} />
         
         // Error for invalid values
         default:

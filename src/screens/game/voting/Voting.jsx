@@ -22,7 +22,7 @@ import SocketService from '../../../services/SocketService'
  * @param players Array of all players in the session
  * @returns 
  */
-function VotingPage({ socket, currentPlayer, players, round, results }) {
+function VotingPage({ socket, currentPlayer, players, task, results }) {
 
     //timer
     const [timer, setTimer] = useState(0)
@@ -63,7 +63,7 @@ function VotingPage({ socket, currentPlayer, players, round, results }) {
                             </div>
 
                             {/*Task description*/}
-                            <TaskDescription description={round.task} />
+                            <TaskDescription description={task.description} />
                                 
 
                         </Card>
@@ -122,7 +122,7 @@ VotingPage.propTypes = {
     socket: PropTypes.object,
     currentPlayer: PropTypes.object,
     players: PropTypes.array,
-    round: PropTypes.object,
+    task: PropTypes.object,
     timer: PropTypes.number,
     results: PropTypes.array
 }

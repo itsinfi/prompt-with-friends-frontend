@@ -24,7 +24,7 @@ import SocketService from '../../../services/SocketService'
  * @param players Array of all players in the session
  * @returns 
  */
-function InputPromptPage({ socket, session, currentPlayer, players, round, results }) {
+function InputPromptPage({ socket, session, currentPlayer, players, task, results }) {
 
 
     //timer
@@ -107,7 +107,7 @@ function InputPromptPage({ socket, session, currentPlayer, players, round, resul
                         <Card>
 
                             {/*Task description*/}
-                                <TaskDescription description={round.task} tip={round.tip} />
+                                <TaskDescription description={task.description} tip={task.tips === undefined || task.tips.length === 0 ? '' : task.tips[0]} />
 
                             
                                 
@@ -158,7 +158,7 @@ InputPromptPage.propTypes = {
     session: PropTypes.object,
     currentPlayer: PropTypes.object,
     players: PropTypes.array,
-    round: PropTypes.object,
+    task: PropTypes.object,
     results: PropTypes.array
 }
 
