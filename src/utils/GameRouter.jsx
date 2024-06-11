@@ -5,6 +5,7 @@ import InputPromptPage from '../screens/game/inputPrompt/InputPrompt'
 import VotingPage from '../screens/game/voting/Voting'
 import LeaderboardPage from '../screens/game/leaderboard/Leaderboard'
 import getRandomTip from './getRandomTip'
+import filterLatestResults from './filterNewestResults'
 
 
 /**
@@ -48,8 +49,11 @@ function GameRouter({ config, socket, session, currentPlayer, players }) {
         // set round to activeRound
         if (_round !== undefined) {
             setTask(_round.task)
-            setResults(_round.results)
             setVotes(_round.votes)
+
+            // filter through latest results only and set it to results
+            const latestResults = filterLatestResults(_round.results, players)
+            setResults(latestResults)
         }
 
     }, [session])
