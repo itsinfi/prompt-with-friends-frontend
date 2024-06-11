@@ -100,7 +100,7 @@ function PromptTextArea({ enableInput = false, onSubmitInput = () => {}, disable
                     value={enableInput ? promptText : initialValue}
                     placeholder={placeholder}
                     onChange={onChange}
-                    // rows={calculateRows(enableInput ? promptText : initialValue) > 1 ? calculateRows(enableInput ? promptText : initialValue) : 1}
+                    rows={calculateRows(enableInput ? promptText : initialValue) > 1 ? calculateRows(enableInput ? promptText : initialValue) : 1}
                     onFocus={onFocus}
                     onBlur={onBlur}
                     onKeyDown={onKeyDown} />
