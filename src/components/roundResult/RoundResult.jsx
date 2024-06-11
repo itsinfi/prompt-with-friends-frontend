@@ -60,7 +60,7 @@ function RoundResult({ result, player, onVote = null, disableMargin = true, isSe
 
                     {/* Vote button (show only if onVote has been provided) */}
                     {
-                        onVote ? <button className='m-20' onClick={() => {onVote(player)}}>
+                        onVote ? <button className='m-20' disabled={isSelected} onClick={() => {onVote(result)}}>
                                     Vote
                                 </button>
                                 :   <></>

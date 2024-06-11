@@ -5,8 +5,6 @@ import SessionConnector from "../../utils/SessionConnector"
 import GameRouter from "../../utils/GameRouter"
 
 /**
- * TODO: add dynamic page loading based on game state
- * 
  * This component is reponsible for loading the game browser route by providing all the necessary loading of data or additional components beforehand. This includes:
  * - ErrorMessage: Error Boundary to display errors and do error handling
  * - ParticlesWrapper: Particles from particles.js by Vincent Garreau

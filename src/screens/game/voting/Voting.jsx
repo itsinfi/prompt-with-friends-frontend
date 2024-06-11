@@ -9,6 +9,8 @@ import TaskDescription from '../../../components/task/TaskDescription'
 import Timer from '../../../components/timer/Timer'
 import RoundResult from '../../../components/roundResult/RoundResult'
 import SocketService from '../../../services/SocketService'
+import VotingService from '../../../services/VotingService'
+import { SuccessSnackBar } from '../../../components/snackBar/SnackBar'
 
 
 
@@ -22,7 +24,7 @@ import SocketService from '../../../services/SocketService'
  * @param players Array of all players in the session
  * @returns 
  */
-function VotingPage({ socket, currentPlayer, players, task, results }) {
+function VotingPage({ socket, session, currentPlayer, players, task, results, votes }) {
 
     //timer
     const [timer, setTimer] = useState(0)
@@ -34,13 +36,20 @@ function VotingPage({ socket, currentPlayer, players, task, results }) {
 
 
     // playerNumber that is selected for vote TODO: remove
-    const [selectedNumber, setSelectedNumber] = useState(null)
+    const [vote, setVote] = useState(votes.find(vote => vote.voter === currentPlayer.playerNumber))
 
 
     // change vote
     const onVote = (result) => {
-        setSelectedNumber(result.playerNumber)
+        setVote({voted: result.playerNumber})
+        VotingService.sendVote(currentPlayer.playerNumber, result.playerNumber, session.sessionCode, () => {
+            votingSuccessSnackBar()
+        })
     }
+
+
+    //Snack Bar for voting feedback
+    const votingSuccessSnackBar = SuccessSnackBar('Erfolgreich für das Ergebnis gevoted!')
 
 
 
@@ -74,32 +83,32 @@ function VotingPage({ socket, currentPlayer, players, task, results }) {
                                 results.length === 0
                             
                                     
-                                // empty placeholder for no results
-                                ?   <Card>
-                                        <h1>Keine Ergebnisse</h1>
-                                    </Card>
+                                    // empty placeholder for no results
+                                    ?   <Card>
+                                            <h1>Keine Ergebnisse</h1>
+                                        </Card>
                                     
 
-                                // show all results
-                                :   <div className='grid-container'>
-                                    
-                                        {
+                                    // show all results
+                                    :   <div className='grid-container'>
+                                        
+                                            {
 
-                                            results
-                                                .filter(
-                                                    result => result.playerNumber !== currentPlayer.playerNumber
-                                                )//TODO: fix
-                                                .map(result => (
-                                                    <RoundResult
-                                                        key={result.playerNumber}
-                                                        result={result}
-                                                        onVote={(result) => { onVote(result) }}
-                                                        isSelected={selectedNumber != null && result.playerNumber === selectedNumber} 
-                                                    />
-                                                ))
-                                        }
-        
-                                    </div>
+                                                results
+                                                    .filter(
+                                                        result => result.playerNumber !== currentPlayer.playerNumber
+                                                    )
+                                                    .map(result => (
+                                                        <RoundResult
+                                                            key={result.playerNumber}
+                                                            result={result}
+                                                            onVote={(result) => { onVote(result) }}
+                                                            isSelected={vote != null && vote.voted !== undefined && result.playerNumber === vote.voted} 
+                                                        />
+                                                    ))
+                                            }
+            
+                                        </div>
                             }
 
                             
@@ -119,11 +128,13 @@ function VotingPage({ socket, currentPlayer, players, task, results }) {
 
 VotingPage.propTypes = {
     socket: PropTypes.object,
+    session: PropTypes.object,
     currentPlayer: PropTypes.object,
     players: PropTypes.array,
     task: PropTypes.object,
     timer: PropTypes.number,
-    results: PropTypes.array
+    results: PropTypes.array,
+    votes: PropTypes.array
 }
 
 export default VotingPage

@@ -34,6 +34,9 @@ function GameRouter({ config, socket, session, currentPlayer, players }) {
     // Results
     const [results, setResults] = useState([])
 
+    // Votes
+    const [votes, setVotes] = useState([])
+
     // update round and results on session update
     useEffect(() => {
 
@@ -49,6 +52,7 @@ function GameRouter({ config, socket, session, currentPlayer, players }) {
         if (_round !== undefined) {
             setTask(_round.task)
             setResults(_round.results)
+            setVotes(_round.votes)
         }
 
     }, [session])
@@ -69,11 +73,11 @@ function GameRouter({ config, socket, session, currentPlayer, players }) {
         
         // Voting Page
         case 1:
-            return <VotingPage config={config} socket={socket} session={session} currentPlayer={currentPlayer} players={players} task={task} results={results} />
+            return <VotingPage config={config} socket={socket} session={session} currentPlayer={currentPlayer} players={players} task={task} results={results} votes={votes} />
         
         // Leaderboard Page
         case 2:
-            return <LeaderboardPage socket={socket} currentPlayer={currentPlayer} players={players} task={task} results={results} />
+            return <LeaderboardPage socket={socket} currentPlayer={currentPlayer} players={players} task={task} results={results} votes={votes} />
         
         // Error for invalid values
         default:
