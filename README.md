@@ -1,6 +1,7 @@
 <h1>Dependencies to install</h1>
 - Node.js v20.12.2 [https://nodejs.org/dist/v20.12.2/node-v20.12.2-x64.msi]
 - run ```npm install```
+- config.json needs to be set. For guidance look at config.json.example
 
 <h1>Run app</h1>
 - run ```npm run dev```
